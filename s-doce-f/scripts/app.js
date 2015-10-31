@@ -1,5 +1,5 @@
 
-    var app = angular.module('appMaestras', ['ngRoute', 'ngResource', 'hc.marked'])
+var app = angular.module('appMaestras', ['ngRoute', 'ngResource', 'hc.marked'])
     .config(['$routeProvider', function($routeProvider)
         {
             $routeProvider.when('/maestras', {
@@ -7,14 +7,12 @@
                 controller: "inicioCtrl"
             });
             $routeProvider.when('/maestras/nueva', {
-//                templateUrl: "templates/maestras-nueva.html",
-                templateUrl: "forms/maestrasForm.html",
+                templateUrl: "templates/maestras-nueva.html",
                 controller: "nuevoCtrl"
             });
             $routeProvider.when('/maestras/editar/:id', {
-//                templateUrl: "templates/maestras-nueva.html",
-                templateUrl: "forms/maestrasForm.html",
-                controller: "editCtrl" 
+                templateUrl: "templates/maestras-editar.html",
+                controller: "editCtrl"
             });
             $routeProvider.otherwise({
                 redirectTo: '/maestras'
@@ -47,7 +45,7 @@
     })
     .controller('nuevoCtrl', function($scope, maestrasFactory)
     {
-        $scope.pololo = "maestrasFactory.polla";
+        $scope.maestra = {};
         $scope.guardar = function() {
             maestrasFactory.resource.save($scope.maestra).$promise.then(function(respuesta)
             {
@@ -56,7 +54,6 @@
 
                 }
             });
-//            maestrasFactory.irInicio();
         };
 
     })
@@ -66,16 +63,17 @@
         maestrasFactory.resource.get({id: id}, function(data) {
             $scope.maestra = data.plantilla_maestra;
         });
+        $scope.maestra = {};
         $scope.guardar = function()
         {
             maestrasFactory.resource.update({id: $scope.maestra._id}, $scope.maestra)
-            .$promise.then(function(respuesta)
-            {
-                if (respuesta.mensaje)
+                .$promise.then(function(respuesta)
                 {
+                    if (respuesta.mensaje)
+                    {
 
-                }
-            });
+                    }
+                });
         };
 
     });
