@@ -38,7 +38,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5 </div>
+                <div ><h1>Sistema Doc-E</h1> </div>
+                <h3>Bienvenido ... </h3>
             </div>
         </div>
     </body>
