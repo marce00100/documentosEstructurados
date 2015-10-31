@@ -7,33 +7,18 @@
         <script src="bower_components/angular/angular.min.js" type="text/javascript"></script>
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
         <!--<script type="text/javascript" src="libs/angular.min.js"></script>-->
-        <script type="text/javascript" src="libs/angular-base64-upload.js"></script>
+        <!--<script type="text/javascript" src="libs/angular-base64-upload.js"></script>-->
+        <script src="bower_components/angular-base64-upload/dist/angular-base64-upload.min.js" type="text/javascript"></script>
         <script type="text/javascript">
                 angular.module('myApp', ['naif.base64'])
                 .controller('ctrl', function($scope, $http, $window, $rootScope) {
-                    var uploadedCount = 0;
-                    $scope.files = [];
                     $scope.file = {};
                     $scope.uploadFiles = function() {
-                        var files = angular.copy($scope.files);
+
                         if ($scope.file) {
                             files.push($scope.file);
                         }
-                        if (files.length === 0) {
-                            $window.alert('Please select files!');
-                            return false;
-                        }
-                        for (var i = files.length - 1; i >= 0; i--) {
-                            var file = files[i];
-                            $http.post('server.php', file)
-                            .success(function(res) {
-                                uploadedCount++;
-                                if (uploadedCount == files.length) {
-                                    $window.alert('View uploaded files?');
-                                    $window.location.assign('/uploads');
-                                }
-                            });
-                        }
+
                     };
                 });
         </script>
@@ -65,7 +50,8 @@
                 <b>Model Value:</b>
                 nombre : {{file.filename}} <br>
                 filetype : {{file.filetype}} <br>
-                kb : {{file.filesize / 1000}} <br>data:image/jpg;base64,
+                kb : {{file.filesize / 1000}} <br>
+                data:image/jpg;base64,
                 base64 : <br>
                 <textarea style="height: 200px; width: 400px; overflow: scroll" >![{{file.filename}}]( data:image/jpg;base64,{{ file.base64}})</textarea>
                 <!--      <tr ng-show="file">
