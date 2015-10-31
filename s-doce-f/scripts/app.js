@@ -14,7 +14,7 @@
             $routeProvider.when('/maestras/editar/:id', {
 //                templateUrl: "templates/maestras-nueva.html",
                 templateUrl: "forms/maestrasForm.html",
-                controller: "editCtrl"
+                controller: "editCtrl" 
             });
             $routeProvider.otherwise({
                 redirectTo: '/maestras'
