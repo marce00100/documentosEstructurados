@@ -1,5 +1,5 @@
 
-var app = angular.module('appMaestras', ['ngRoute', 'ngResource', 'hc.marked'])
+    var app = angular.module('appMaestras', ['ngRoute', 'ngResource', 'hc.marked'])
     .config(['$routeProvider', function($routeProvider)
         {
             $routeProvider.when('/maestras', {
@@ -13,6 +13,10 @@ var app = angular.module('appMaestras', ['ngRoute', 'ngResource', 'hc.marked'])
             $routeProvider.when('/maestras/editar/:id', {
                 templateUrl: "templates/maestras-editar.html",
                 controller: "editCtrl"
+            });
+            $routeProvider.when('/maestras/x', {
+                templateUrl: "templates/pruebas.html",
+                controller: "pruebaCtrl"
             });
             $routeProvider.otherwise({
                 redirectTo: '/maestras'
@@ -67,15 +71,32 @@ var app = angular.module('appMaestras', ['ngRoute', 'ngResource', 'hc.marked'])
         $scope.guardar = function()
         {
             maestrasFactory.resource.update({id: $scope.maestra._id}, $scope.maestra)
-                .$promise.then(function(respuesta)
+            .$promise.then(function(respuesta)
+            {
+                if (respuesta.mensaje)
                 {
-                    if (respuesta.mensaje)
-                    {
 
-                    }
-                });
+                }
+            });
         };
 
+    });
+    app.factory('pruebaFct', function() {
+        var comun = {};
+        comun.text = function() {
+            return 'hola ccccccccccccccc';
+        };
+        return comun;
+
+
+    });
+    app.controller('pruebaCtrl', function($scope, pruebaFct)
+    {
+        var persona = pruebaFct.text();
+        $scope.agregarNombre = function()
+        {
+            $scope.txtPrueba = persona;
+        };
     });
 
 
