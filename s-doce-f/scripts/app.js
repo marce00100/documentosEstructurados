@@ -81,21 +81,39 @@
         };
 
     });
+
+    app.run(function($rootScope) {
+//        $rootScope = {};
+        $rootScope.fnDefine = function(valor)
+        {
+            return (angular.isUndefined(valor) || valor == null) ? "" : valor;
+        };
+        $rootScope.fnMdNegritas = function()
+        {
+            return "****";
+        };
+    });
     app.factory('pruebaFct', function() {
         var comun = {};
-        comun.text = function() {
+        comun.text = function()
+        {
             return 'hola ccccccccccccccc';
         };
+
         return comun;
-
-
     });
     app.controller('pruebaCtrl', function($scope, pruebaFct)
     {
+        var pctrl = $scope;
         var persona = pruebaFct.text();
-        $scope.agregarNombre = function()
+        pctrl.agregarNombre = function()
         {
-            $scope.txtPrueba = persona;
+            pctrl.txtPrueba = persona;
+        };
+
+        pctrl.btnNegritas = function()
+        {
+            pctrl.txtPrueba = pctrl.fnDefine(pctrl.txtPrueba) + pctrl.fnMdNegritas();
         };
     });
 
