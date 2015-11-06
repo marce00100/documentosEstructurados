@@ -3,24 +3,18 @@
     <head>
         <meta charset="UTF-8">
         <title>Angular Base64 Upload Demo</title>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="bower_components/angular/angular.min.js" type="text/javascript"></script>
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <!--<script type="text/javascript" src="libs/angular.min.js"></script>-->
-        <!--<script type="text/javascript" src="libs/angular-base64-upload.js"></script>-->
-        <script src="bower_components/angular-base64-upload/dist/angular-base64-upload.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            angular.module('myApp', ['naif.base64'])
-            .controller('ctrl', function($scope) {
-                $scope.file = {};
 
-            })
-            .run(function($rootScope) {
-//                $fs = (  $fs === null) ? {"filename": "", "base64": ""} : $fs;
-                $rootScope.valor = function() {
-                    return "123456789";
-                };
-                $rootScope.imagenBase64 = function($fs) {
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+
+        <script src="bower_components/angular/angular.min.js" type="text/javascript"></script>
+        <script src="bower_components/angular-base64-upload/dist/angular-base64-upload.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+
+                function img64md($fs)
+                {
                     var imgBase64 = "";
                     if ((typeof $fs !== "undefined") && ($fs !== null))
                     {
@@ -29,8 +23,81 @@
                         //return (isUndefined(fs.base64) || isNull(fs.base64))?'':fs.base64 ; //file.base64;
                     }
                     return imgBase64;
-                };
-            });
+                }
+
+                function insertText(text, objecto)
+                {
+                    var input = objecto;
+                    console.log(input);
+                    if (input == undefined) {
+                        return;
+                    }
+                    var scrollPos = input.scrollTop;
+                    var pos = 0;
+                    var browser = ((input.selectionStart || input.selectionStart == "0") ?
+                        "ff" : (document.selection ? "ie" : false));
+                    if (browser == "ie") {
+                        input.focus();
+                        var range = document.selection.createRange();
+                        range.moveStart("character", -input.value.length);
+                        pos = range.text.length;
+                    }
+                    else if (browser == "ff") {
+                        pos = input.selectionStart
+                    }
+                    ;
+                    var front = (input.value).substring(0, pos);
+                    var back = (input.value).substring(pos, input.value.length);
+                    input.value = front + text + back;
+                    pos = pos + text.length;
+                    if (browser == "ie") {
+                        input.focus();
+                        var range = document.selection.createRange();
+                        range.moveStart("character", -input.value.length);
+                        range.moveStart("character", pos);
+                        range.moveEnd("character", 0);
+                        range.select();
+                    }
+                    else if (browser == "ff") {
+                        input.selectionStart = pos;
+                        input.selectionEnd = pos;
+                        input.focus();
+                    }
+                    input.scrollTop = scrollPos;
+                    console.log(angular.element(input).val());
+                    angular.element(input).trigger('input');
+                }
+
+                app = angular.module('myApp', ['naif.base64'])
+                    .controller('ctrl', function($scope) {
+                        $scope.file = {};
+                    });
+                app.run(function($rootScope) {
+
+                    $rootScope.lastFocused;
+                    angular.element("input[type='text']").focus(function() {
+                        $rootScope.lastFocused = document.activeElement;
+                    });
+
+                    $rootScope.imagenBase64 = function($fs)
+                    {
+                        return img64md($fs);
+                    };
+
+                    $rootScope.insertarImagenBase64 = function(img)
+                    {
+//                    angular.element("input[type='text']").focus(function() {
+                        angular.element("textarea").focus(function() {
+                            $rootScope.lastFocused = document.activeElement;
+                        });
+
+                        var img64 = img64md(img);
+                        insertText(img64, $rootScope.lastFocused);
+                        
+                        return img64;
+                    };
+
+                })
 
         </script>
 
@@ -40,27 +107,19 @@
             <form name="form">
                 <h3>Single File Selection</h3>
                 <div class="input-group">
-
                     <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
                         <i class="glyphicon glyphicon-plus"></i>
                         <span>Add Pic.</span>
-                        <input type="file" ng-model="file" name="file" ng-disabled="disabled" hidden=""  base-sixty-four-input ng-change="clave = imagenBase64(file)" ng-click="" >
+                        <input type="file" ng-model="file" name="file" ng-disabled="disabled" hidden=""  base-sixty-four-input ng-change="clave = insertarImagenBase64(file)" ng-click="" >
                     </span>
-
-
                 </div>
-
-                <b>Model Value:</b>
-                nombre : {{file.filename}} <br>
-                filetype : {{file.filetype}} <br>
-                kb : {{file.filesize / 1000}} <br>
-                data:image/jpg;base64,
-                base64 : <br>
                 <textarea style="height: 200px; width: 400px; overflow: scroll" >![{{file.filename}}]( data:image/jpg;base64,{{ file.base64}})</textarea>
-
+                <div class="form-group"><input ng-model="text1" class="form-control" type="text" id="input1" /></div>
                 <br>
                 {{clave}}
-                </div>
-                </body>
+            </form>
+        </div>
 
-                </html>
+    </body>
+
+</html>
