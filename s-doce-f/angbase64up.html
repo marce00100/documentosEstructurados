@@ -10,43 +10,46 @@
         <!--<script type="text/javascript" src="libs/angular-base64-upload.js"></script>-->
         <script src="bower_components/angular-base64-upload/dist/angular-base64-upload.min.js" type="text/javascript"></script>
         <script type="text/javascript">
-                angular.module('myApp', ['naif.base64'])
-                .controller('ctrl', function($scope, $http, $window, $rootScope) {
-                    $scope.file = {};
-                    $scope.uploadFiles = function() {
+            angular.module('myApp', ['naif.base64'])
+            .controller('ctrl', function($scope) {
+                $scope.file = {};
 
-                        if ($scope.file) {
-                            files.push($scope.file);
-                        }
+            })
+            .run(function($rootScope) {
+//                $fs = (  $fs === null) ? {"filename": "", "base64": ""} : $fs;
+                $rootScope.valor = function() {
+                    return "123456789";
+                };
+                $rootScope.imagenBase64 = function($fs) {
+                    var imgBase64 = "";
+                    if ((typeof $fs !== "undefined") && ($fs !== null))
+                    {
+                        console.log($fs);
+                        imgBase64 = "![" + $fs.filename + "]( data:image;base64," + $fs.base64 + ")";
+                        //return (isUndefined(fs.base64) || isNull(fs.base64))?'':fs.base64 ; //file.base64;
+                    }
+                    return imgBase64;
+                };
+            });
 
-                    };
-                });
         </script>
-        <style>
-            body{padding-bottom: 50px;}
-            .alert{margin-top: 15px;}
-        </style>
+
     </head>
     <body ng-controller="ctrl">
         <div class="container">
             <form name="form">
                 <h3>Single File Selection</h3>
                 <div class="input-group">
-                    <label for="file">Select File</label>
-                    <input type="file" ng-model="file" name="file" base-sixty-four-input required maxsize="500" accept="image/*">
 
-                    <ul>
-                        <li>required</li>
-                        <li>maxsize = 500</li>
-                        <li>accept = image/*</li>
-                    </ul>
+                    <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Add Pic.</span>
+                        <input type="file" ng-model="file" name="file" ng-disabled="disabled" hidden=""  base-sixty-four-input ng-change="clave = imagenBase64(file)" ng-click="" >
+                    </span>
+
 
                 </div>
-                <div class="alert" ng-class="{'alert-danger': form.file.$invalid, 'alert-success': form.file.$valid}">
-                    form.file.$error: {{form.file.$error}}<br>
-                    form.file.$dirty: {{form.file.$dirty}}<br>
-                    form.file.$pristine: {{form.file.$pristine}}<br>
-                </div>
+
                 <b>Model Value:</b>
                 nombre : {{file.filename}} <br>
                 filetype : {{file.filetype}} <br>
@@ -54,53 +57,10 @@
                 data:image/jpg;base64,
                 base64 : <br>
                 <textarea style="height: 200px; width: 400px; overflow: scroll" >![{{file.filename}}]( data:image/jpg;base64,{{ file.base64}})</textarea>
-                <!--      <tr ng-show="file">
-                        <td>{{file.filename}}</td>
-                        <td>{{file.filetype}}</td>
-                        <td>{{file.filesize / 1000}}</td>
-                        <td>{{file.base64.substring(0, 30)}}...</td>-->
 
+                <br>
+                {{clave}}
+                </div>
+                </body>
 
-                <!--                        <h3>Multiple Files Selection</h3>
-                                        <div class="input-group">
-                                            <label for="file">Select Files</label>
-                                            <span class="help-block">
-                                                <ul>
-                                                    <li>required</li>
-                                                    <li>minsize = 500</li>
-                                                    <li>accept = image/*, .zip</li>
-                                                    <li>minnum = 2</li>
-                                                </ul>
-                                            </span>
-                                            <input type="file" ng-model="files" name="files" base-sixty-four-input multiple accept="image/*, .zip" minsize="500" required minnum="2">
-                                        </div>
-                                        <div class="alert" ng-class="{'alert-danger': form.files.$invalid, 'alert-success': form.files.$valid}">
-                                            form.files.$error: {{form.files.$error}}<br>
-                                            form.files.$dirty: {{form.files.$dirty}}<br>
-                                            form.files.$pristine: {{form.files.$pristine}}<br>
-                                        </div>
-                                        <b>Model Value:</b>
-                                        <table class="table table-bordered table-striped">
-                                            <tr>
-                                                <th>filename</th>
-                                                <th>filetype</th>
-                                                <th>filesize (<i><small>KB</small></i>)</th>
-                                                <th>base64</th>
-                                            </tr>
-                                            <tr ng-repeat="file in files">
-                                                <td>{{file.filename}}</td>
-                                                <td>{{file.filetype}}</td>
-                                                <td>{{file.filesize / 1000}}</td>
-                                                <td>{{file.base64.substring(0, 30)}}...</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="4" ng-show="files.length == 0">
-                                                    <small><i>No file selected.</i></small>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        </form>-->
-        </div>
-    </body>
-
-</html>
+                </html>
