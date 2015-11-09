@@ -7,9 +7,12 @@
         .factory('appFactory', function($resource, $location)
         {
             var comun = {};
+
             comun.restMaestras = $resource("../s-doce-b/public/index.php/maestras/:id", {id: "@_id"}, {
-                update: {method: "PUT", params: {id: "@id"}} 
+                update: {method: "PUT", params: {id: "@id"}}
             });
+
+
 
             comun.restPlantillas = $resource("../s-doce-b/public/index.php/plantillas/:id", {id: "@_id"}, {
                 update: {method: "PUT", params: {id: "@id"}}
@@ -23,6 +26,28 @@
 
         .run(function($rootScope) {
             $rootScope.markupSettings = settingsMarkdown;
+
+            $rootScope.insertarImagen = function(img)
+            {
+                
+                
+                
+                console.log("dddddddddddsssssssss");
+//                    angular.element("input[type='text']").focus(function() {
+                angular.element("textarea").focus(function() {
+                    $rootScope.lastFocused = document.activeElement;
+                });
+
+                var img64 = img64md(img);
+                insertText(img64, $rootScope.lastFocused);
+
+                return img64;
+            };
+            
+            $rootScope.verPrueba = function()
+            {
+                console.log("885555222");
+            };
 
         })
         .directive("markitup", function() {

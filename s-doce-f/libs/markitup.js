@@ -243,30 +243,33 @@
                         }
                     }
                 });
-                var liImg = $('<li class="markItUpButton markItUpButton1 ">' +
-                '<a title="Título 1 [Ctrl+1]" accesskey="1" href="">Título 1</a>' +
-                '</li>').bind('click.markItUp', function(e) {
-                    e.preventDefault();
-                }).bind("focusin.markItUp", function() {
-                    $$.focus();
-                }).bind('mouseup', function() {
-//                    if (button.call) {
-//                        eval(button.call)();
+                var liImg = $('<li class="markItUpButton markItUpButton14 ">' +
+                //'<a title="Imagen "  href="">Imagen' + 
+                '<input type="file" ng-model="file" name="file"  base-sixty-four-input ng-change="insertarImagenBase64(file)" ng-click="" >' + 
+                //'</a>' +
+                '</li>');
+//                    .bind('click.markItUp', function(e) {
+//                    e.preventDefault();
+//                }).bind("focusin.markItUp", function() {
+//                    $$.focus();
+//                }).bind('mouseup', function() {
+////                    if (button.call) {
+////                        eval(button.call)();
+////                    }
+////                    setTimeout(function() {
+////                        markup(button)
+////                    }, 1);
+//                    return false;
+//                }).bind('mouseenter.markItUp', function() {
+//                    $('> ul', this).show();
+//                    $(document).one('click', function() { // close dropmenu if click outside
+//                        $('ul ul', header).hide();
 //                    }
-//                    setTimeout(function() {
-//                        markup(button)
-//                    }, 1);
-                    return false;
-                }).bind('mouseenter.markItUp', function() {
-                    $('> ul', this).show();
-                    $(document).one('click', function() { // close dropmenu if click outside
-                        $('ul ul', header).hide();
-                    }
-                    );
-                }).bind('mouseleave.markItUp', function() {
-                    $('> ul', this).hide();
-                }).appendTo(ul);
-                ;
+//                    );
+//                }).bind('mouseleave.markItUp', function() {
+//                    $('> ul', this).hide();
+//                }).appendTo(ul);
+                
                 liImg.appendTo(ul);
                 levels.pop();
                 return ul;
