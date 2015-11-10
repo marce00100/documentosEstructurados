@@ -1,5 +1,5 @@
 
-    var app = angular.module('appMaestras', ['ngRoute', 'ngResource', 'hc.marked'])
+    var app = angular.module('appMaestras', ['ngRoute', 'ngResource', 'hc.marked', 'naif.base64'])
         .config(['markedProvider', function(markedProvider)
             {
                 markedProvider.setOptions({gfm: true});
@@ -12,8 +12,6 @@
                 update: {method: "PUT", params: {id: "@id"}}
             });
 
-
-
             comun.restPlantillas = $resource("../s-doce-b/public/index.php/plantillas/:id", {id: "@_id"}, {
                 update: {method: "PUT", params: {id: "@id"}}
             });
@@ -23,32 +21,41 @@
 //            };
             return comun;
         })
-
         .run(function($rootScope) {
             $rootScope.markupSettings = settingsMarkdown;
 
             $rootScope.insertarImagen = function(img)
             {
-                
-                
-                
-                console.log("dddddddddddsssssssss");
-//                    angular.element("input[type='text']").focus(function() {
+                $rootScope.lastFocused;
                 angular.element("textarea").focus(function() {
                     $rootScope.lastFocused = document.activeElement;
                 });
-
                 var img64 = img64md(img);
                 insertText(img64, $rootScope.lastFocused);
-
                 return img64;
             };
             
-            $rootScope.verPrueba = function()
+            $rootScope.insertarCodigo = function(tipo)
             {
-                console.log("885555222");
+                var texto = "";
+                $rootScope.lastFocused;
+                angular.element("textarea").focus(function() {
+                    $rootScope.lastFocused = document.activeElement;
+                });
+                if(tipo === "1")
+                {
+                    texto = '<textarea></textarea>';
+                }
+                if(tipo==="2")
+                {
+                    texto= '<input type="text">';
+                }
+                if(tipo==="3")
+                {
+                    texto= '<label ></label>';
+                }
+                insertText(texto, $rootScope.lastFocused);
             };
-
         })
         .directive("markitup", function() {
             return {
@@ -99,7 +106,6 @@
         })
         .controller('nuevoCtrl', function($scope, appFactory)
         {
-//    $scope.markupSettings = settingsMarkdown;
             $scope.maestra = {};
             $scope.guardar = function() {
                 appFactory.restMaestras.save($scope.maestra).$promise.then(function(respuesta)

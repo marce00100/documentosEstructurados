@@ -3,7 +3,6 @@
         var imgBase64 = "";
         if ((typeof $fs !== "undefined") && ($fs !== null))
         {
-            console.log($fs);
             imgBase64 = "![" + $fs.filename + "]( data:image;base64," + $fs.base64 + ")";
             //return (isUndefined(fs.base64) || isNull(fs.base64))?'':fs.base64 ; //file.base64;
         }
@@ -13,7 +12,6 @@
     function insertText(text, objecto)
     {
         var input = objecto;
-        console.log(input);
         if (input == undefined) {
             return;
         }
@@ -49,7 +47,7 @@
             input.focus();
         }
         input.scrollTop = scrollPos;
-        console.log(angular.element(input).val());
+//        console.log(angular.element(input).val());
         angular.element(input).trigger('input');
     }
 

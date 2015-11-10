@@ -150,7 +150,10 @@
                 $$.addClass("markItUpEditor");
 
                 // add the header before the textarea
-                header = $('<div class="markItUpHeader"></div>').insertBefore($$);
+                ///////////////////////////////////////////  AGREGAR BOTONES AQUI //////////////////////////////////////////////////////////
+                header = $('<div class="markItUpHeader"></div>' + 
+//                    '<input type="file"  ng-model="fileIm"  base-sixty-four-input   onchange="prueba()" >' +
+                    '').insertBefore($$);
                 $(dropMenus(options.markupSet)).appendTo(header);
 
                 // add the footer after the textarea
@@ -243,34 +246,14 @@
                         }
                     }
                 });
-                var liImg = $('<li class="markItUpButton markItUpButton14 ">' +
-                //'<a title="Imagen "  href="">Imagen' + 
-                '<input type="file" ng-model="file" name="file"  base-sixty-four-input ng-change="insertarImagenBase64(file)" ng-click="" >' + 
-                //'</a>' +
-                '</li>');
-//                    .bind('click.markItUp', function(e) {
-//                    e.preventDefault();
-//                }).bind("focusin.markItUp", function() {
-//                    $$.focus();
-//                }).bind('mouseup', function() {
-////                    if (button.call) {
-////                        eval(button.call)();
-////                    }
-////                    setTimeout(function() {
-////                        markup(button)
-////                    }, 1);
-//                    return false;
-//                }).bind('mouseenter.markItUp', function() {
-//                    $('> ul', this).show();
-//                    $(document).one('click', function() { // close dropmenu if click outside
-//                        $('ul ul', header).hide();
-//                    }
-//                    );
-//                }).bind('mouseleave.markItUp', function() {
-//                    $('> ul', this).hide();
-//                }).appendTo(ul);
-                
-                liImg.appendTo(ul);
+//                var liImg = $('<li class="markItUpButton markItUpButton14 ">' +
+//                //'<a title="Imagen "  href="">Imagen' + 
+//                ''+
+//                //'</a>' +
+//                '</li>');
+//
+//                
+//                liImg.appendTo(ul);
                 levels.pop();
                 return ul;
             }
