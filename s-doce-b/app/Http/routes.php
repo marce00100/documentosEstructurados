@@ -4,9 +4,6 @@
  * Rutas para Plantillas Maestras
  */
 Route::get('/maestras/', 'MaestrasController@obtenerMaestras');
-//Route::get('/maestras/', function(){
-//    echo "sss";
-//});
 Route::get('/maestras/{id}', 'MaestrasController@obtenerMaestra');
 Route::post('/maestras/', 'MaestrasController@crear');
 Route::put('/maestras/{id}', 'MaestrasController@modificar');
@@ -21,7 +18,13 @@ Route::post('/plantillas/', 'PlantillasController@crear');
 Route::put('/plantillas/{id}', 'PlantillasController@modificar');
 
 
-
+/*
+ * Rutas para Plantillas 
+ */
+Route::get('/documentos/', 'DocumentosController@obtenerDocumentos');
+Route::get('/documentos/{id}', 'DocumentosController@obtenerDocumento');
+Route::post('/documentos/', 'DocumentosController@crear');
+Route::put('/documentos/{id}', 'DocumentosController@modificar');
 
 
 

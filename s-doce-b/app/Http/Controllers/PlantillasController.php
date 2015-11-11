@@ -20,15 +20,13 @@ class PlantillasController extends Controller
         ];
         $plantillas = Plantillas::orderBy('fecha_creacion', 'DESC')->get($camposMostrados);
         return response()->json([
-                "mensaje" => "Encontrados",
+                "mensaje" => "Encontradas " . $plantillas->count(),
                 "plantillas" => $plantillas->toArray(),
                 ], 200);
     }
 
     public function obtenerPlantilla($id)
     {
-
-
         $plantilla = Plantillas::find($id);
         return response()->json([
                 "mensaje" => "Encontrado",

@@ -152,7 +152,8 @@
                 // add the header before the textarea
                 ///////////////////////////////////////////  AGREGAR BOTONES AQUI //////////////////////////////////////////////////////////
                 header = $('<div class="markItUpHeader"></div>' + 
-//                    '<input type="file"  ng-model="fileIm"  base-sixty-four-input   onchange="prueba()" >' +
+//                '<input class="ng-valid ng-isolate-scope ng-valid-parse ng-dirty ng-touched" type="file" ng-change="insertarImagen(file)" base-sixty-four-input="" ng-model="file">' +
+//                    '<input type="file"  ng-model="file"  base-sixty-four-input   ng-change="insertarImagen(file)" >' +
                     '').insertBefore($$);
                 $(dropMenus(options.markupSet)).appendTo(header);
 

@@ -83,3 +83,12 @@ footer {
     background: inherit;
     left: 20px;
 }
+
+.txtHtmlPlantilla{
+    padding: 10px 20px;
+}
+
+.txtHtmlPlantilla textarea{
+    width: 100%;
+    height: 100px;
+}
