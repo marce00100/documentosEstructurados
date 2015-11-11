@@ -84,11 +84,11 @@ footer {
     left: 20px;
 }
 
-.txtHtmlPlantilla{
+.txtHtmlPlantilla, .txtHtmlDocumento{
     padding: 10px 20px;
 }
 
-.txtHtmlPlantilla textarea{
+.txtHtmlPlantilla textarea, .txtHtmlDocumento textarea{
     width: 100%;
     height: 100px;
 }

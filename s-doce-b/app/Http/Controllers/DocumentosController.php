@@ -7,7 +7,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\DocumentosModel as Documentos;
 
-
 class DocumentosController extends Controller
 {
 
@@ -30,7 +29,7 @@ class DocumentosController extends Controller
         $documento = Documentos::find($id);
         return response()->json([
                 "mensaje" => "Encontrado",
-                "plantilla" => $documento->toArray(),
+                "documento" => $documento->toArray(),
                 ], 200);
     }
 
@@ -38,9 +37,9 @@ class DocumentosController extends Controller
     {
         $request->usuario_creacion = "000100010001000010000001";
         $documento = new Documentos();
-        $documento->nombre = $request->nombre;
+        $documento->nombre = (string) $request->nombre;
         $documento->descripcion = (string) $request->descripcion;
-        $documento->plantilla = (int) $request->plantilla;
+        $documento->plantilla = (string) $request->plantilla;
         $documento->contenido = (string) $request->contenido;
         $documento->usuario_creacion = $request->usuario_creacion;
         $documento->usuario_modificacion = $request->usuario_creacion;
@@ -58,7 +57,7 @@ class DocumentosController extends Controller
         $documento = Documentos::find($id);
         $documento->nombre = (string) $request->nombre;
         $documento->descripcion = (string) $request->descripcion;
-        $documento->plantilla = (int) $request->plantilla;
+        $documento->plantilla = (string) $request->plantilla;
         $documento->contenido = (string) $request->contenido;
         $documento->usuario_modificacion = $request->usuario_modificacion;
         $documento->save();

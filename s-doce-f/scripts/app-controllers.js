@@ -1,202 +1,204 @@
-/*
- * Rutas  y Controladores de MAESTRAS ===================================================================
- * 
- */
+    /*
+     * Rutas  y Controladores de MAESTRAS ===================================================================
+     * 
+     */
 
-app.config(['$routeProvider', function($routeProvider)
-    {
-        $routeProvider.when('/maestras', {
-            templateUrl: "templates/maestras-lista.html",
-            controller: "maestrasInicioCtrl"
-        });
-        $routeProvider.when('/maestras/nueva', {
-            templateUrl: "templates/maestras-nueva.html",
-            controller: "maestrasNuevaCtrl"
-        });
-        $routeProvider.when('/maestras/editar/:id', {
-            templateUrl: "templates/maestras-editar.html",
-            controller: "maestrasEditarCtrl"
-        });
-
-        $routeProvider.when('/x', {
-            templateUrl: "templates/pruebas.html",
-            controller: "pruebaCtrl"
-        });
-
-        $routeProvider.otherwise({
-            redirectTo: '/maestras'
-        });
-    }])
-.controller('maestrasInicioCtrl', function($scope, appFactory)
-{
-    appFactory.restMaestras.get(function(respuesta) {
-        $scope.lista = respuesta.plantillas_maestras;
-    });
-})
-.controller('maestrasNuevaCtrl', function($scope, appFactory)
-{
-    $scope.maestra = {};
-    $scope.guardar = function() {
-        appFactory.restMaestras.save($scope.maestra).$promise.then(function(respuesta)
+    app.config(['$routeProvider', function($routeProvider)
         {
-            if (respuesta.mensaje)
-            {
+            $routeProvider.when('/maestras', {
+                templateUrl: "templates/maestras-lista.html",
+                controller: "maestrasInicioCtrl"
+            });
+            $routeProvider.when('/maestras/nueva', {
+                templateUrl: "templates/maestras-nueva.html",
+                controller: "maestrasNuevaCtrl"
+            });
+            $routeProvider.when('/maestras/editar/:id', {
+                templateUrl: "templates/maestras-editar.html",
+                controller: "maestrasEditarCtrl"
+            });
 
-            }
-        });
-    };
-})
-.controller('maestrasEditarCtrl', function($scope, appFactory, $routeParams)
-{
-    var id = $routeParams.id;
-    appFactory.restMaestras.get({id: id}, function(data) {
-        $scope.maestra = data.plantilla_maestra;
-    });
-    $scope.maestra = {};
-    $scope.guardar = function()
-    {
-        appFactory.restMaestras.update({id: $scope.maestra._id}, $scope.maestra)
-        .$promise.then(function(respuesta)
+            $routeProvider.when('/x', {
+                templateUrl: "templates/pruebas.html",
+                controller: "pruebaCtrl"
+            });
+
+            $routeProvider.otherwise({
+                redirectTo: '/maestras'
+            });
+        }])
+        .controller('maestrasInicioCtrl', ['$scope', 'appFactory', function($scope, appFactory)
+            {
+                appFactory.restMaestras.get(function(respuesta) {
+                    $scope.lista = respuesta.plantillas_maestras;
+                });
+            }])
+        .controller('maestrasNuevaCtrl', ['$scope', 'appFactory', function($scope, appFactory)
+            {
+                $scope.maestra = {};
+                $scope.guardar = function() {
+                    appFactory.restMaestras.save($scope.maestra).$promise.then(function(respuesta)
+                    {
+                        if (respuesta.mensaje)
+                        {
+
+                        }
+                    });
+                };
+            }])
+        .controller('maestrasEditarCtrl', ['$scope', 'appFactory', '$routeParams', function($scope, appFactory, $routeParams)
+            {
+                $scope.maestra = {};
+                var id = $routeParams.id;
+                appFactory.restMaestras.get({id: id}, function(data) {
+                    $scope.maestra = data.plantilla_maestra;
+                });
+
+                $scope.guardar = function()
+                {
+                    appFactory.restMaestras.update({id: $scope.maestra._id}, $scope.maestra)
+                        .$promise.then(function(respuesta)
+                        {
+                            if (respuesta.mensaje)
+                            {
+
+                            }
+                        });
+                };
+            }]);
+
+    /*
+     * Rutas  y Controladores de PLANTILLAS ============================================================
+     * 
+     */
+
+    app.config(['$routeProvider', function($routeProvider)
         {
-            if (respuesta.mensaje)
+            $routeProvider.when('/plantillas', {
+                templateUrl: "templates/plantillas-lista.html",
+                controller: "plantillasInicioCtrl"
+            });
+            $routeProvider.when('/plantillas/nueva', {
+                templateUrl: "templates/plantillas-nueva.html",
+                controller: "plantillasNuevaCtrl"
+            });
+            $routeProvider.when('/plantillas/editar/:id', {
+                templateUrl: "templates/plantillas-editar.html",
+                controller: "plantillasEditarCtrl"
+            });
+        }])
+        .controller('plantillasInicioCtrl', ['$scope', 'appFactory', function($scope, appFactory)
             {
+                appFactory.restPlantillas.get(function(respuesta) {
+                    $scope.lista = respuesta.plantillas;
+                });
+            }])
+        .controller('plantillasNuevaCtrl', ['$scope', 'appFactory', function($scope, appFactory)
+            {
+                $scope.plantilla = {};
+                $scope.guardar = function() {
+                    appFactory.restPlantillas.save($scope.plantilla).$promise.then(function(respuesta)
+                    {
+                        if (respuesta.mensaje)
+                        {
 
-            }
-        });
-    };
-});
+                        }
+                    });
+                };
+            }])
+        .controller('plantillasEditarCtrl', ['$scope', 'appFactory', '$routeParams', function($scope, appFactory, $routeParams)
+            {
+                $scope.plantilla = {};
+                var id = $routeParams.id;
+                appFactory.restPlantillas.get({id: id}, function(data) {
+                    $scope.plantilla = data.plantilla;
+                });
 
-/*
- * Rutas  y Controladores de PLANTILLAS ============================================================
- * 
- */
+                $scope.guardar = function()
+                {
+                    appFactory.restPlantillas.update({id: $scope.plantilla._id}, $scope.plantilla)
+                        .$promise.then(function(respuesta)
+                        {
+                            if (respuesta.mensaje)
+                            {
 
-app.config(['$routeProvider', function($routeProvider)
-    {
-        $routeProvider.when('/plantillas', {
-            templateUrl: "templates/plantillas-lista.html",
-            controller: "plantillasInicioCtrl"
-        });
-        $routeProvider.when('/plantillas/nueva', {
-            templateUrl: "templates/plantillas-nueva.html",
-            controller: "plantillasNuevaCtrl"
-        });
-        $routeProvider.when('/plantillas/editar/:id', {
-            templateUrl: "templates/plantillas-editar.html",
-            controller: "plantillasEditarCtrl"
-        });
-    }])
-.controller('plantillasInicioCtrl', function($scope, appFactory)
-{
-    appFactory.restPlantillas.get(function(respuesta) {
-        $scope.lista = respuesta.plantillas;
-    });
-})
-.controller('plantillasNuevaCtrl', function($scope, appFactory)
-{
-    $scope.plantilla = {};
-    $scope.guardar = function() {
-        appFactory.restPlantillas.save($scope.plantilla).$promise.then(function(respuesta)
+                            }
+                        });
+                };
+            }]);
+
+    /*
+     * Rutas  y Controladores de DOCUMENTOS ============================================================
+     * 
+     */
+
+    app.config(['$routeProvider', function($routeProvider)
         {
-            if (respuesta.mensaje)
+            $routeProvider.when('/documentos', {
+                templateUrl: "templates/documentos-lista.html",
+                controller: "documentosInicioCtrl"
+            });
+            $routeProvider.when('/documentos/nuevo', {
+                templateUrl: "templates/documentos-nuevo.html",
+                controller: "documentosNuevoCtrl"
+            });
+            $routeProvider.when('/documentos/editar/:id', {
+                templateUrl: "templates/documentos-editar.html",
+                controller: "documentosEditarCtrl"
+            });
+        }])
+        .controller('documentosInicioCtrl', ['$scope', 'appFactory', function($scope, appFactory)
             {
-
-            }
-        });
-    };
-})
-.controller('plantillasEditarCtrl', function($scope, appFactory, $routeParams)
-{
-    var id = $routeParams.id;
-    appFactory.restPlantillas.get({id: id}, function(data) {
-        $scope.plantilla = data.plantilla;
-    });
-    $scope.plantilla = {};
-
-    $scope.guardar = function()
-    {
-        appFactory.restPlantillas.update({id: $scope.plantilla._id}, $scope.plantilla)
-        .$promise.then(function(respuesta)
-        {
-            if (respuesta.mensaje)
+                appFactory.restDocumentos.get(function(respuesta) {
+                    $scope.lista = respuesta.documentos;
+                });
+            }])
+        .controller('documentosNuevoCtrl', ['$scope', 'appFactory', '$resource', function($scope, appFactory, $resource)
             {
+                $scope.documento = {};
 
-            }
-        });
-    };
-});
+                $resource("../s-doce-b/public/index.php/plantillas/vigente/1").get(function(respuesta) {
+                    $scope.plantillasVigentes = respuesta.plantillas;
+                });
 
-/*
- * Rutas  y Controladores de DOCUMENTOS ============================================================
- * 
- */
+                $scope.cargarPlantilla = function(idSeleccionado)
+                {
+                    appFactory.restPlantillas.get({id: idSeleccionado}, function(data) {
+                        $scope.documento.contenido = data.plantilla.contenido;
+                    });
+                };
 
-app.config(['$routeProvider', function($routeProvider)
-    {
-        $routeProvider.when('/documentos', {
-            templateUrl: "templates/documentos-lista.html",
-            controller: "documentosInicioCtrl"
-        });
-        $routeProvider.when('/documentos/nuevo', {
-            templateUrl: "templates/documentos-nuevo.html",
-            controller: "documentosNuevoCtrl"
-        });
-        $routeProvider.when('/documentos/editar/:id', {
-            templateUrl: "templates/documentos-editar.html",
-            controller: "documentosEditarCtrl"
-        });
-    }])
-.controller('documentosInicioCtrl', function($scope, appFactory)
-{
-    appFactory.restDocumentos.get(function(respuesta) {
-        $scope.lista = respuesta.documentos;
-    });
-})
-.controller('documentosNuevoCtrl', function($scope, appFactory)
-{
-    $scope.documento = {};
-    
-    appFactory.restPlantillas.get(function(respuesta){
-       $scope.plantillasVigentes = respuesta.plantillas;
-    });
-    
-    $scope.cargarPlantilla = function()
-    {
-        console.log($scope.cmbPlantillas);
-    };
-    
-    $scope.guardar = function() {
-        appFactory.restDocumentos.save($scope.documento).$promise.then(function(respuesta)
-        {
-            if (respuesta.mensaje)
+
+                $scope.guardar = function() {
+                    appFactory.restDocumentos.save($scope.documento).$promise.then(function(respuesta)
+                    {
+                        if (respuesta.mensaje)
+                        {
+
+                        }
+                    });
+                };
+            }])
+        .controller('documentosEditarCtrl', ['$scope', 'appFactory', '$routeParams', function($scope, appFactory, $routeParams)
             {
+                $scope.documento = {};
+                var id = $routeParams.id;
+                appFactory.restDocumentos.get({id: id}, function(data) {
+                    $scope.documento = data.documento;
+                });
 
-            }
-        });
-    };
-    
-    
-})
-.controller('documentosEditarCtrl', function($scope, appFactory, $routeParams)
-{
-    $scope.documento = {};
-    var id = $routeParams.id;
-    appFactory.restDocumentos.get({id: id}, function(data) {
-        $scope.documento = data.documento;
-    });
-    
-    $scope.guardar = function()
-    {
-        appFactory.restDocumentos.update({id: $scope.documento._id}, $scope.documento)
-        .$promise.then(function(respuesta)
-        {
-            if (respuesta.mensaje)
-            {
+                $scope.guardar = function()
+                {
+                    appFactory.restDocumentos.update({id: $scope.documento._id}, $scope.documento)
+                        .$promise.then(function(respuesta)
+                        {
+                            if (respuesta.mensaje)
+                            {
 
-            }
-        });
-    };
-});
+                            }
+                        });
+                };
+            }]);
 
 
 

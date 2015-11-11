@@ -10,16 +10,21 @@ Route::put('/maestras/{id}', 'MaestrasController@modificar');
 
 
 /*
- * Rutas para Plantillas 
+ * Rutas para Plantillas Parea los Servicios WEB: GET, GET(id), POST, PUT(id)
  */
 Route::get('/plantillas/', 'PlantillasController@obtenerPlantillas');
 Route::get('/plantillas/{id}', 'PlantillasController@obtenerPlantilla');
 Route::post('/plantillas/', 'PlantillasController@crear');
 Route::put('/plantillas/{id}', 'PlantillasController@modificar');
+// Ruta para obtener servicios con criterio: Campo like Valor order by nombre ASC
+Route::get('/plantillas/{campo}/{valor}', 'PlantillasController@obtenerPlantillasCriterio');
+
+
+
 
 
 /*
- * Rutas para Plantillas 
+ * Rutas para Documentos 
  */
 Route::get('/documentos/', 'DocumentosController@obtenerDocumentos');
 Route::get('/documentos/{id}', 'DocumentosController@obtenerDocumento');

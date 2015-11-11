@@ -51,15 +51,15 @@
             });
             if (tipo === "1")
             {
-                texto = '<!--de_lineatexto--><input type="text"><!--de_lineatexto-->';
+                texto = '<!--cuadrotexto--><input type="text"><!--_cuadrotexto-->';
             }
             else if (tipo === "2")
             {
-                texto = '<!--de_cajatexto--><textarea></textarea><!--de_cajatexto-->';
+                texto = '<!--bloquetexto--><textarea></textarea><!--_bloquetexto-->';
             }
             else if (tipo === "3")
             {
-                texto = '<label></label>';
+                texto = '<!--autotexto--><label></label><!--_autobloquetexto-->';
             }
             insertText(texto, $rootScope.lastFocused);
         };

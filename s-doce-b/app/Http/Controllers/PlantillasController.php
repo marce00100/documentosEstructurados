@@ -7,7 +7,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\PlantillasModel as Plantillas;
 
-
 class PlantillasController extends Controller
 {
 
@@ -38,7 +37,7 @@ class PlantillasController extends Controller
     {
         $request->usuario_creacion = "000100010001000010000001";
         $plantilla = new Plantillas();
-        $plantilla->nombre = $request->nombre;
+        $plantilla->nombre = (string) $request->nombre;
         $plantilla->descripcion = (string) $request->descripcion;
         $plantilla->vigente = (int) $request->vigente;
         $plantilla->contenido = (string) $request->contenido;
@@ -67,6 +66,24 @@ class PlantillasController extends Controller
         return response()->json([
                 "mensaje" => "Plantilla Modificada",
                 "plantilla" => $plantilla->toArray(),
+                ], 200);
+    }
+
+    public function obtenerPlantillasCriterio($campo, $valor)
+    {
+        $camposMostrados = [
+            '_id', 'nombre', 'descripcion', 'vigente',
+            'usuario_creacion', 'usuario_modificacion',
+            'fecha_creacion', 'fecha_modificacion',
+        ];
+
+
+        $plantillas = Plantillas::where("$campo", "LIKE", "%$valor%")
+                ->orWhere($campo, "=", (int) $valor)->orderBy('nombre', 'ASC')->get($camposMostrados);
+
+        return response()->json([
+                "mensaje" => "Encontradas " . $plantillas->count(),
+                "plantillas" => $plantillas->toArray(),
                 ], 200);
     }
 

@@ -54,7 +54,7 @@ class MaestrasController extends Controller
 
         $request->usuario_creacion = "000100010001000010000001";
         $maestra = new Maestras();
-        $maestra->nombre = $request->nombre;
+        $maestra->nombre = (string) $request->nombre;
         $maestra->descripcion = (string) $request->descripcion;
         $maestra->activa = (int) $request->activa;
         $maestra->cabecera = (string) $request->cabecera;
@@ -91,7 +91,6 @@ class MaestrasController extends Controller
                 ], 200);
     }
 
-    
     private function desactivarTodas()
     {
 
