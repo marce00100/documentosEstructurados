@@ -148,15 +148,25 @@ app.config(['$routeProvider', function($routeProvider)
     }])
 .controller('documentosInicioCtrl', function($scope, appFactory)
 {
-    appFactory.restPlantillas.get(function(respuesta) {
-        $scope.lista = respuesta.plantillas;
+    appFactory.restDocumentos.get(function(respuesta) {
+        $scope.lista = respuesta.documentos;
     });
 })
 .controller('documentosNuevoCtrl', function($scope, appFactory)
 {
-    $scope.plantilla = {};
+    $scope.documento = {};
+    
+    appFactory.restPlantillas.get(function(respuesta){
+       $scope.plantillasVigentes = respuesta.plantillas;
+    });
+    
+    $scope.cargarPlantilla = function()
+    {
+        console.log($scope.cmbPlantillas);
+    };
+    
     $scope.guardar = function() {
-        appFactory.restPlantillas.save($scope.plantilla).$promise.then(function(respuesta)
+        appFactory.restDocumentos.save($scope.documento).$promise.then(function(respuesta)
         {
             if (respuesta.mensaje)
             {
@@ -164,18 +174,20 @@ app.config(['$routeProvider', function($routeProvider)
             }
         });
     };
+    
+    
 })
 .controller('documentosEditarCtrl', function($scope, appFactory, $routeParams)
 {
+    $scope.documento = {};
     var id = $routeParams.id;
-    appFactory.restPlantillas.get({id: id}, function(data) {
-        $scope.plantilla = data.plantilla;
+    appFactory.restDocumentos.get({id: id}, function(data) {
+        $scope.documento = data.documento;
     });
-    $scope.plantilla = {};
-
+    
     $scope.guardar = function()
     {
-        appFactory.restPlantillas.update({id: $scope.plantilla._id}, $scope.plantilla)
+        appFactory.restDocumentos.update({id: $scope.documento._id}, $scope.documento)
         .$promise.then(function(respuesta)
         {
             if (respuesta.mensaje)

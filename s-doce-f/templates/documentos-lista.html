@@ -1,19 +1,19 @@
 
 <div class="container-fluid subHeader" >
-    <h3>Plantillas</h3>
+    <h3>Documentos</h3>
 </div>
 
 <div class="container">
     <div >
         <br>
-        <a href="#/plantillas/nueva" class="btn btn-success glyphicon glyphicon-plus"> Crear plantilla</a>
+        <a href="#/documentos/nuevo" class="btn btn-success glyphicon glyphicon-plus">Nuevo Documento</a>
         <div class="table-responsive">
-            <table id="breakingBadChar" class="table table-hover" > 
+            <table id="tblDocumentos" class="table table-hover" > 
                 <thead>
                     <tr>                        
-                        <th>Plantillas</th>
+                        <th>Documentos</th>
                         <th>Descripción</th>
-                        <th>Vigente</th>
+                        <th>Plantilla base</th>
                         <th>Creado por</th>
                         <th>Ultima modificación</th>
                         <th></th>
@@ -21,17 +21,12 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="item in lista"> 
-                        <td><b>{{item.nombre}}</b></td>
+                        <td><b><a  href="#/documentos/editar/{{item._id}}">{{item.nombre}}</a></b></td>
                         <td>{{item.descripcion}}</td>
-                        <td> 
-                            <div class="material-switch pull-right">
-                                <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox" ng-model="item.vigente" ng-true-value="1" ng-false-value="0" disabled=""/>
-                                <label for="someSwitchOptionSuccess" class="label-success"></label>
-                            </div>
-                        </td>                        
+                        <td>{{item.plantilla}}</td>                        
                         <td>{{item.usuario_creacion}}<br>{{item.fecha_creacion}}</td>
                         <td>{{item.fecha_modificacion}}</td>
-                        <td><a href="#/plantillas/editar/{{item._id}}" class="glyphicon glyphicon-pencil" ></a></td>
+                        <td><a href="#/documentos/editar/{{item._id}}" class="glyphicon glyphicon-pencil" ></a></td>
                     </tr>
                 </tbody>
             </table>
