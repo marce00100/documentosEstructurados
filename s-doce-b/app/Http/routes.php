@@ -7,10 +7,13 @@ Route::get('/maestras/', 'MaestrasController@obtenerMaestras');
 Route::get('/maestras/{id}', 'MaestrasController@obtenerMaestra');
 Route::post('/maestras/', 'MaestrasController@crear');
 Route::put('/maestras/{id}', 'MaestrasController@modificar');
+// Para obtener la plantilla maestra activa
+Route::get('/maestra/activa/', 'MaestrasController@obtenerMaestraActiva');
+
 
 
 /*
- * Rutas para Plantillas Parea los Servicios WEB: GET, GET(id), POST, PUT(id)
+ * Rutas para Plantillas Para los Servicios WEB: GET, GET(id), POST, PUT(id)
  */
 Route::get('/plantillas/', 'PlantillasController@obtenerPlantillas');
 Route::get('/plantillas/{id}', 'PlantillasController@obtenerPlantilla');

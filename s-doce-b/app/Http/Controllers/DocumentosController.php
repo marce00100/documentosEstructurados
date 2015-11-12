@@ -40,6 +40,7 @@ class DocumentosController extends Controller
         $documento->nombre = (string) $request->nombre;
         $documento->descripcion = (string) $request->descripcion;
         $documento->plantilla = (string) $request->plantilla;
+        $documento->plantilla_id = (string) $request->plantilla_id;
         $documento->contenido = (string) $request->contenido;
         $documento->usuario_creacion = $request->usuario_creacion;
         $documento->usuario_modificacion = $request->usuario_creacion;
@@ -58,6 +59,7 @@ class DocumentosController extends Controller
         $documento->nombre = (string) $request->nombre;
         $documento->descripcion = (string) $request->descripcion;
         $documento->plantilla = (string) $request->plantilla;
+        $documento->plantilla_id = (string) $request->plantilla_id;
         $documento->contenido = (string) $request->contenido;
         $documento->usuario_modificacion = $request->usuario_modificacion;
         $documento->save();

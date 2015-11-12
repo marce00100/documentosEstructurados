@@ -27,45 +27,45 @@
                 redirectTo: '/maestras'
             });
         }])
-        .controller('maestrasInicioCtrl', ['$scope', 'appFactory', function($scope, appFactory)
-            {
-                appFactory.restMaestras.get(function(respuesta) {
-                    $scope.lista = respuesta.plantillas_maestras;
-                });
-            }])
-        .controller('maestrasNuevaCtrl', ['$scope', 'appFactory', function($scope, appFactory)
-            {
-                $scope.maestra = {};
-                $scope.guardar = function() {
-                    appFactory.restMaestras.save($scope.maestra).$promise.then(function(respuesta)
-                    {
-                        if (respuesta.mensaje)
-                        {
-
-                        }
-                    });
-                };
-            }])
-        .controller('maestrasEditarCtrl', ['$scope', 'appFactory', '$routeParams', function($scope, appFactory, $routeParams)
-            {
-                $scope.maestra = {};
-                var id = $routeParams.id;
-                appFactory.restMaestras.get({id: id}, function(data) {
-                    $scope.maestra = data.plantilla_maestra;
-                });
-
-                $scope.guardar = function()
+    .controller('maestrasInicioCtrl', ['$scope', 'appFactory', function($scope, appFactory)
+        {
+            appFactory.restMaestras.get(function(respuesta) {
+                $scope.lista = respuesta.plantillas_maestras;
+            });
+        }])
+    .controller('maestrasNuevaCtrl', ['$scope', 'appFactory', function($scope, appFactory)
+        {
+            $scope.maestra = {};
+            $scope.guardar = function() {
+                appFactory.restMaestras.save($scope.maestra).$promise.then(function(respuesta)
                 {
-                    appFactory.restMaestras.update({id: $scope.maestra._id}, $scope.maestra)
-                        .$promise.then(function(respuesta)
-                        {
-                            if (respuesta.mensaje)
-                            {
+                    if (respuesta.mensaje)
+                    {
 
-                            }
-                        });
-                };
-            }]);
+                    }
+                });
+            };
+        }])
+    .controller('maestrasEditarCtrl', ['$scope', 'appFactory', '$routeParams', function($scope, appFactory, $routeParams)
+        {
+            $scope.maestra = {};
+            var id = $routeParams.id;
+            appFactory.restMaestras.get({id: id}, function(data) {
+                $scope.maestra = data.plantilla_maestra;
+            });
+
+            $scope.guardar = function()
+            {
+                appFactory.restMaestras.update({id: $scope.maestra._id}, $scope.maestra)
+                .$promise.then(function(respuesta)
+                {
+                    if (respuesta.mensaje)
+                    {
+
+                    }
+                });
+            };
+        }]);
 
     /*
      * Rutas  y Controladores de PLANTILLAS ============================================================
@@ -87,45 +87,45 @@
                 controller: "plantillasEditarCtrl"
             });
         }])
-        .controller('plantillasInicioCtrl', ['$scope', 'appFactory', function($scope, appFactory)
-            {
-                appFactory.restPlantillas.get(function(respuesta) {
-                    $scope.lista = respuesta.plantillas;
-                });
-            }])
-        .controller('plantillasNuevaCtrl', ['$scope', 'appFactory', function($scope, appFactory)
-            {
-                $scope.plantilla = {};
-                $scope.guardar = function() {
-                    appFactory.restPlantillas.save($scope.plantilla).$promise.then(function(respuesta)
-                    {
-                        if (respuesta.mensaje)
-                        {
-
-                        }
-                    });
-                };
-            }])
-        .controller('plantillasEditarCtrl', ['$scope', 'appFactory', '$routeParams', function($scope, appFactory, $routeParams)
-            {
-                $scope.plantilla = {};
-                var id = $routeParams.id;
-                appFactory.restPlantillas.get({id: id}, function(data) {
-                    $scope.plantilla = data.plantilla;
-                });
-
-                $scope.guardar = function()
+    .controller('plantillasInicioCtrl', ['$scope', 'appFactory', function($scope, appFactory)
+        {
+            appFactory.restPlantillas.get(function(respuesta) {
+                $scope.lista = respuesta.plantillas;
+            });
+        }])
+    .controller('plantillasNuevaCtrl', ['$scope', 'appFactory', function($scope, appFactory)
+        {
+            $scope.plantilla = {};
+            $scope.guardar = function() {
+                appFactory.restPlantillas.save($scope.plantilla).$promise.then(function(respuesta)
                 {
-                    appFactory.restPlantillas.update({id: $scope.plantilla._id}, $scope.plantilla)
-                        .$promise.then(function(respuesta)
-                        {
-                            if (respuesta.mensaje)
-                            {
+                    if (respuesta.mensaje)
+                    {
 
-                            }
-                        });
-                };
-            }]);
+                    }
+                });
+            };
+        }])
+    .controller('plantillasEditarCtrl', ['$scope', 'appFactory', '$routeParams', function($scope, appFactory, $routeParams)
+        {
+            $scope.plantilla = {};
+            var id = $routeParams.id;
+            appFactory.restPlantillas.get({id: id}, function(data) {
+                $scope.plantilla = data.plantilla;
+            });
+
+            $scope.guardar = function()
+            {
+                appFactory.restPlantillas.update({id: $scope.plantilla._id}, $scope.plantilla)
+                .$promise.then(function(respuesta)
+                {
+                    if (respuesta.mensaje)
+                    {
+
+                    }
+                });
+            };
+        }]);
 
     /*
      * Rutas  y Controladores de DOCUMENTOS ============================================================
@@ -147,58 +147,81 @@
                 controller: "documentosEditarCtrl"
             });
         }])
-        .controller('documentosInicioCtrl', ['$scope', 'appFactory', function($scope, appFactory)
-            {
-                appFactory.restDocumentos.get(function(respuesta) {
-                    $scope.lista = respuesta.documentos;
-                });
-            }])
-        .controller('documentosNuevoCtrl', ['$scope', 'appFactory', '$resource', function($scope, appFactory, $resource)
-            {
-                $scope.documento = {};
+    .controller('documentosInicioCtrl', ['$scope', 'appFactory', function($scope, appFactory)
+        {
+            appFactory.restDocumentos.get(function(respuesta) {
+                $scope.lista = respuesta.documentos;
+            });
+        }])
+    .controller('documentosNuevoCtrl', ['$scope', 'appFactory', '$resource', '$rootScope', function($scope, appFactory, $resource, $rootScope)
+        {
+            $scope.documento = {};
 
+            function cargarPlantillasActivas()
+            {
+                // carga plantillas vigentes
                 $resource("../s-doce-b/public/index.php/plantillas/vigente/1").get(function(respuesta) {
                     $scope.plantillasVigentes = respuesta.plantillas;
                 });
 
-                $scope.cargarPlantilla = function(idSeleccionado)
-                {
-                    appFactory.restPlantillas.get({id: idSeleccionado}, function(data) {
-                        $scope.documento.contenido = data.plantilla.contenido;
-                    });
-                };
-
-
-                $scope.guardar = function() {
-                    appFactory.restDocumentos.save($scope.documento).$promise.then(function(respuesta)
-                    {
-                        if (respuesta.mensaje)
-                        {
-
-                        }
-                    });
-                };
-            }])
-        .controller('documentosEditarCtrl', ['$scope', 'appFactory', '$routeParams', function($scope, appFactory, $routeParams)
-            {
-                $scope.documento = {};
-                var id = $routeParams.id;
-                appFactory.restDocumentos.get({id: id}, function(data) {
-                    $scope.documento = data.documento;
+                //carga plantilla maestra activa
+                $resource("../s-doce-b/public/index.php/maestra/activa").get(function(respuesta) {
+                    $scope.maestra = respuesta.plantilla_maestra;
                 });
+            }
+            cargarPlantillasActivas();
 
-                $scope.guardar = function()
+
+
+            $scope.cargarPlantilla = function()
+            {
+                var idSeleccionado = $scope.documento.plantillaObjeto._id;
+                appFactory.restPlantillas.get({id: idSeleccionado}, function(data) {
+                    $scope.documento.plantillaContenido = $rootScope.adecuarTextoPlantilla(data.plantilla.contenido);
+                });
+            };
+            
+            
+            
+            
+            $scope.visualizarHTML = function()
+            {
+                
+            };
+
+
+            $scope.guardar = function() {
+                $scope.documento.plantilla_id = $scope.documento.plantillaObjeto._id;
+                $scope.documento.plantilla = $scope.documento.plantillaObjeto.nombre;
+                appFactory.restDocumentos.save($scope.documento).$promise.then(function(respuesta)
                 {
-                    appFactory.restDocumentos.update({id: $scope.documento._id}, $scope.documento)
-                        .$promise.then(function(respuesta)
-                        {
-                            if (respuesta.mensaje)
-                            {
+                    if (respuesta.mensaje)
+                    {
 
-                            }
-                        });
-                };
-            }]);
+                    }
+                });
+            };
+        }])
+    .controller('documentosEditarCtrl', ['$scope', 'appFactory', '$routeParams', function($scope, appFactory, $routeParams)
+        {
+            $scope.documento = {};
+            var id = $routeParams.id;
+            appFactory.restDocumentos.get({id: id}, function(data) {
+                $scope.documento = data.documento;
+            });
+
+            $scope.guardar = function()
+            {
+                appFactory.restDocumentos.update({id: $scope.documento._id}, $scope.documento)
+                .$promise.then(function(respuesta)
+                {
+                    if (respuesta.mensaje)
+                    {
+
+                    }
+                });
+            };
+        }]);
 
 
 

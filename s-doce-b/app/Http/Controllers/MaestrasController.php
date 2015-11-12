@@ -102,5 +102,15 @@ class MaestrasController extends Controller
             $maestra->save();
         }
     }
+    
+    public function obtenerMaestraActiva()
+    {
+
+        $maestra = Maestras::where("activa", "=", 1)->get(); 
+        return response()->json([
+                    "mensaje" => "Plantilla Maestra activa",
+                    "plantilla_maestra" => $maestra->toArray(),
+                    ], 200);
+    }
 
 }

@@ -63,6 +63,26 @@
             }
             insertText(texto, $rootScope.lastFocused);
         };
+
+        $rootScope.adecuarTextoPlantilla = function(contenido)
+        {
+            text = contenido;
+            var opcion = '<textarea>';
+            var id = 0;
+            while (text.toString().indexOf(opcion) != -1)
+            {
+                var opcionNueva = '<textarea id="txt_' + id.toString() +'"  ng-model="txt_' + id.toString() +'" markitup="markupSettings" class="markitup" >';
+
+                text = text.toString().replace(opcion, opcionNueva);
+                id++;
+            }
+            return text;
+
+        };
+        $rootScope.reemplazarInputs = function()
+        {
+
+        };
     })
     .directive("markitup", function() {
         return {
