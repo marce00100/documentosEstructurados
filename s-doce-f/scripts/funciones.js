@@ -50,6 +50,8 @@
 //        console.log(angular.element(input).val());
         angular.element(input).trigger('input');
     }
+    
+
 
 //    function replaceAll(text, search, newstring) {
 //        while (text.toString().indexOf(search) != - 1)

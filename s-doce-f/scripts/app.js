@@ -83,6 +83,8 @@
         {
 
         };
+        
+
     })
     .directive("markitup", function() {
         return {

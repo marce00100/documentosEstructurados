@@ -8,9 +8,10 @@
         </div>
         <div class="list-group-item col-md-5 col-xs-4">
             Plantilla base:  
-            <select ng-model="documento.plantillaObjeto" ng-change="cargarPlantilla()" ng-options="{_id : item._id, nombre : item.nombre} as item.nombre for item in plantillasVigentes">
+            <select ng-show="documento._id == null" ng-model="documento.plantillaObjeto" ng-change="cargarPlantilla()" ng-options="{_id : item._id, nombre : item.nombre} as item.nombre for item in plantillasVigentes">
                 <option value="">Seleccione una plantilla</option>
             </select>
+            <span ng-show="documento._id" style="font-size: 14pt"> {{documento.plantilla}}</span>
         </div>
     </div>
 
@@ -35,6 +36,19 @@
     </div>
     <button ng-click="guardar()" class="btn btn-success glyphicon glyphicon-ok"> Guardar</button> 
     <a href="#/documentos" class="btn btn-primary glyphicon glyphicon-home"> volver al inicio</a>
+    <br>
+    <input type="text" ng-model="oki"> <button ng-click="btnclick()">jddd</button>
+    <button ng-click="btn2()">rrrrrrrrrrr888</button>
+    <div ng-model="okihtml" marked="oki" style="border: solid 1px grey"> 
+
+
+
+
+    </div>
+    <div ng-bind-html="to_trusted()" ></div>
+    <!--<textarea id="txtMdContenido"  ng-model="plantilla.contenido" markitup="markupSettings" class="markitup" style="  height:8cm;"></textarea>-->
+
+
 </div>
 
 
