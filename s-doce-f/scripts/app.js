@@ -1,5 +1,5 @@
 
-    var app = angular.module('appMaestras', ['ngRoute', 'ngResource', 'hc.marked', 'naif.base64'])
+    var app = angular.module('appMaestras', ['ngRoute', 'ngResource', 'hc.marked', 'naif.base64', 'ngHtmlCompile', 'angular-bind-html-compile'])
     .config(['markedProvider', function(markedProvider)
         {
             markedProvider.setOptions({gfm: true});
@@ -71,7 +71,7 @@
             var id = 0;
             while (text.toString().indexOf(opcion) != -1)
             {
-                var opcionNueva = '<textarea id="txt_' + id.toString() +'"  ng-model="txt_' + id.toString() +'" markitup="markupSettings" class="markitup" >';
+                var opcionNueva = '<textarea id="txt_' + id.toString() + '"  ng-model="txt_' + id.toString() + '" markitup="markupSettings" class="markitup" >';
 
                 text = text.toString().replace(opcion, opcionNueva);
                 id++;
@@ -83,7 +83,7 @@
         {
 
         };
-        
+
 
     })
     .directive("markitup", function() {

@@ -17,9 +17,9 @@ header {
 
 a {color:#444;} 
 /*a:visited {color:#444;}*/ 
-a:active {color:#444;}
+/*a:active {color:#444;}*/
 a:hover {color:#000000;}
-a:link   {  text-decoration:none; color:#444;}
+a:link   {  text-decoration:none; }
 
 table th{
     background:#34495e;

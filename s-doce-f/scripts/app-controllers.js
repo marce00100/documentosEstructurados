@@ -157,8 +157,6 @@
             {
                 $scope.documento = {};
 
-
-
                 function cargarPlantillasActivas()
                 {
                     // carga plantillas vigentes
@@ -170,8 +168,6 @@
                     $resource("../s-doce-b/public/index.php/maestra/activa").get(function(respuesta) {
                         $scope.maestra = respuesta.plantilla_maestra;
                     });
-
-
                 }
                 cargarPlantillasActivas();
 
@@ -185,22 +181,6 @@
                 };
 
 
-                $scope.btnclick = function()
-                {
-                    $scope.oki = '__negritas__ \n\n <textarea id="txtMdContenido"  ng-model="plantilla.contenido" markitup="markupSettings" \n\
-class="markitup" style="  height:8cm;">hola</textarea> \n\n \n\
-<input type="text" ng-model="oki"> <button ng-click="btn2()">rrrrrrrrrrr888</button>';
-                    console.log("hhh");
-                };
-                $scope.btn2 = function()
-                {
-                    console.log("8888");
-                };
-
-                $scope.to_trusted = function() {
-                    html_code = '<button ng-click="btn2()">hmknj</button>';
-                    return $sce.trustAsHtml(html_code);
-                };
 
                 $scope.visualizarHTML = function()
                 {
@@ -255,16 +235,23 @@ class="markitup" style="  height:8cm;">hola</textarea> \n\n \n\
 //    };
 //    return comun;
 //});
-//app.controller('pruebaCtrl', function($scope, pruebaFct)
-//{
-//    var pctrl = $scope;
-//    var persona = pruebaFct.text();
-//    pctrl.agregarNombre = function()
-//    {
-//        pctrl.txtPrueba = persona;
-//    };
-//    pctrl.btnNegritas = function()
-//    {
-//        pctrl.txtPrueba = pctrl.fnDefine(pctrl.txtPrueba) + pctrl.fnMdNegritas();
-//    };
-//});
+app.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
+
+app.controller('pruebaCtrl', function($scope)
+{
+    $scope.escribir_html = function()
+    {
+        text = "hola <input type='button' onclick='cuatro()' > kkk <input type='button' ng-click='ngcinco()' ><br>text <h1>blabla</h1>" +
+        '<textarea id="txtMdContenido"  ng-model="plantilla.contenido" markitup="markupSettings" class="markitup" style="  height:2cm;"></textarea>';
+        $scope.div_html = text;
+        $scope.div2 = text;
+        $scope.div3 = text;
+
+    };
+    
+    $scope.ngcinco = function()
+    {
+      var texto = "desde el scope con ngclick";  
+      console.log(texto);
+    };
+});
