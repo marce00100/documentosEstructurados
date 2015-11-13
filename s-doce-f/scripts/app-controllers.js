@@ -153,7 +153,7 @@
                     $scope.lista = respuesta.documentos;
                 });
             }])
-        .controller('documentosNuevoCtrl', ['$scope', 'appFactory', '$resource', '$rootScope', '$sce', function($scope, appFactory, $resource, $rootScope, $sce)
+        .controller('documentosNuevoCtrl', ['$scope', 'appFactory', '$resource', '$rootScope', 'marked', function($scope, appFactory, $resource, $rootScope, marked)
             {
                 $scope.documento = {};
 
@@ -176,15 +176,15 @@
                 {
                     var idSeleccionado = $scope.documento.plantillaObjeto._id;
                     appFactory.restPlantillas.get({id: idSeleccionado}, function(data) {
-                        $scope.documento.plantillaContenido = $rootScope.adecuarTextoPlantilla(data.plantilla.contenido);
+                        var mdContenido = marked(data.plantilla.contenido);
+                        $scope.documento.plantillaContenido = $rootScope.adecuarContenidoPlantilla(mdContenido);
                     });
                 };
 
-
-
-                $scope.visualizarHTML = function()
+                $scope.previsualizarDocumento = function(doc)
                 {
-
+                    var docMD = $rootScope.adecuarParaVisualizar(doc);
+                    $scope.divPrevisualizacion = docMD;
                 };
 
 
@@ -235,23 +235,11 @@
 //    };
 //    return comun;
 //});
-app.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
+    app.filter('unsafe', function($sce) {
+        return $sce.trustAsHtml;
+    });
 
-app.controller('pruebaCtrl', function($scope)
-{
-    $scope.escribir_html = function()
+    app.controller('pruebaCtrl', function($scope)
     {
-        text = "hola <input type='button' onclick='cuatro()' > kkk <input type='button' ng-click='ngcinco()' ><br>text <h1>blabla</h1>" +
-        '<textarea id="txtMdContenido"  ng-model="plantilla.contenido" markitup="markupSettings" class="markitup" style="  height:2cm;"></textarea>';
-        $scope.div_html = text;
-        $scope.div2 = text;
-        $scope.div3 = text;
-
-    };
-    
-    $scope.ngcinco = function()
-    {
-      var texto = "desde el scope con ngclick";  
-      console.log(texto);
-    };
-});
+        
+    });

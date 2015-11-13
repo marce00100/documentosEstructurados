@@ -20,11 +20,12 @@
             <h3 class="bg-success" style="padding: 5px 10px">Documento:</h3>
 
             <div class="row">
-                <div id="txtHtmlPlantilla" class="txtHtmlPlantilla" marked="documento.plantillaContenido" style="width:21.6cm;  height:8cm; overflow:auto; border:1px solid gray; ">
-                </div>
+
+                    <div id="editorDocumento" class="txtHtmlPlantilla" ng-model="editorDocumento"  bind-html-compile="documento.plantillaContenido" style="width:21.6cm;  height:8cm; overflow:auto; border:1px solid gray; ">
+                    </div>
 
                 <button class="btn-default btn" ng-click="documento.contenido = ''" > Limpiar</button>
-                <button class="glyphicon glyphicon-eye-open  btn-info btn" ng-click="visualizarHTML()"> Visualizar</button>
+                <button class="glyphicon glyphicon-eye-open  btn-info btn" ng-click="previsualizarDocumento(editorDocumento)"> Visualizar</button>
                 <div id="txtHtmlDocumento" class="txtHtmlDocumento" marked="divPrevisualizacion" style="width:21.6cm;  height:8cm; overflow:auto; border:1px solid gray; ">
                 </div>
             </div>

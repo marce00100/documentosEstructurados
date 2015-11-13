@@ -59,12 +59,7 @@
 //        return text;
 //    }
 
-function cuatro()
-{
-    i = 2;
-    j = 2 + i;
-    alert("el resultado es = " + j);
-}
+
 
 
 

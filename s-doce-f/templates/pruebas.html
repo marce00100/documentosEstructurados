@@ -1,28 +1,34 @@
 <div>
+    <div id="contenedor" >
+        <strong>est  contenidos</strong><br>
+        Nombre <input type="text" id="txt1" value=""><br>
+        Direccion<textarea id="txt2"></textarea><br>
+        si/no<input type="text" id="txt5" value=""><br>
+        edad<input type="text" id="txt6" value=""><br>
 
-    <button ng-click="escribir_html()" >escribir html</button>
-    <input type="button" onclick="cuatro()" value="funcion js"> 
-    <input type='button' ng-click='ngcinco()' value="ngclick" >
-
-
-    <div ng-bind-html ="div_html | unsafe" style="border: solid 3px grey; min-height:  40px"></div>
-
-    <div ng-html-compile="div2" style="border: 3px solid red; min-height:  40px"></div>
-
-    <div bind-html-compile="div3" style="border: 3px solid green; min-height:  40px"></div>
-    <h2>____________con JS____________<br>___________________________</h2>
+        descripcion<textarea id="txt9"></textarea><br>
+    </div>    
+    <button id="btnObtenerContenidos">valores</button>
     <script>
-                    $(function() {
-                        $("#btnEscribirHtml2").click(function() {
-                            $("#div_html2").html('    <input type="button" onclick="cuatro()" value="funcion js"> ' +
-                            '<input type="button" ng-click="ngcinco()" value="ngclick" ><br>' +
-                            '<textarea id="markItUp" cols="80" rows="20"></textarea>');
-                        });
-                    });
+            $(function() {
+                $("#btnObtenerContenidos").click(function() {
+                    var textarea = $("#contenedor").find('textarea');
+                    var input = $("#contenedor").find('input');
+                    var contenidos = [];
+                    for (var i = 0; i < textarea.length; i++)
+                    {
+                        contenidos.push($(input[i]).attr('id'), $(input[i]).val());
+                    }
+
+                    console.log(contenidos);
+
+
+
+                });
+
+
+
+            });
+
     </script>
-    <button id="btnEscribirHtml2" >escribir</button>
-    <div id="div_html2" style="border: solid 1px grey; height: 40px"></div>
 </div>
-
-
-
