@@ -18,7 +18,7 @@
         var scrollPos = input.scrollTop;
         var pos = 0;
         var browser = ((input.selectionStart || input.selectionStart == "0") ?
-        "ff" : (document.selection ? "ie" : false));
+            "ff" : (document.selection ? "ie" : false));
         if (browser == "ie") {
             input.focus();
             var range = document.selection.createRange();
@@ -50,7 +50,9 @@
 //        console.log(angular.element(input).val());
         angular.element(input).trigger('input');
     }
-    
+
+
+
 
 
 //    function replaceAll(text, search, newstring) {

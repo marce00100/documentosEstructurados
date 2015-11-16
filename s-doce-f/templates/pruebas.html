@@ -8,27 +8,9 @@
 
         descripcion<textarea id="txt9"></textarea><br>
     </div>    
-    <button id="btnObtenerContenidos">valores</button>
-    <script>
-            $(function() {
-                $("#btnObtenerContenidos").click(function() {
-                    var textarea = $("#contenedor").find('textarea');
-                    var input = $("#contenedor").find('input');
-                    var contenidos = [];
-                    for (var i = 0; i < textarea.length; i++)
-                    {
-                        contenidos.push($(input[i]).attr('id'), $(input[i]).val());
-                    }
+    <button id="btnObtenerContenidos" ng-click="obtenerValores()">valores</button>
+    <div >{{resultado}}</div>
+    <button ng-click="pruebaTexto()"> texto</button>
 
-                    console.log(contenidos);
-
-
-
-                });
-
-
-
-            });
-
-    </script>
 </div>
+

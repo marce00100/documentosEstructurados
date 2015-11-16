@@ -177,20 +177,14 @@
                     var idSeleccionado = $scope.documento.plantillaObjeto._id;
                     appFactory.restPlantillas.get({id: idSeleccionado}, function(data) {
                         var mdContenido = marked(data.plantilla.contenido);
-                        $scope.documento.plantillaContenido = $rootScope.adecuarContenidoPlantilla(mdContenido);
+                        $scope.documento.plantilla_contenido = $rootScope.adecuarContenidoPlantilla(mdContenido);
                     });
                 };
 
-                $scope.previsualizarDocumento = function(doc)
-                {
-                    var docMD = $rootScope.adecuarParaVisualizar(doc);
-                    $scope.divPrevisualizacion = docMD;
-                };
-
-
                 $scope.guardar = function() {
                     $scope.documento.plantilla_id = $scope.documento.plantillaObjeto._id;
-                    $scope.documento.plantilla = $scope.documento.plantillaObjeto.nombre;
+                    $scope.documento.plantilla_nombre = $scope.documento.plantillaObjeto.nombre;
+                    $scope.documento.contenido = $scope.adecuarDocumentoParaGuardar();
                     appFactory.restDocumentos.save($scope.documento).$promise.then(function(respuesta)
                     {
                         if (respuesta.mensaje)
@@ -204,8 +198,11 @@
             {
                 $scope.documento = {};
                 var id = $routeParams.id;
+                
                 appFactory.restDocumentos.get({id: id}, function(data) {
                     $scope.documento = data.documento;
+                    
+                    $scope.documento.plantilla_contenido =  $scope.adecuarContenidoDocumento($scope.documento.contenido, $scope.documento.plantilla_contenido);
                 });
 
                 $scope.guardar = function()
@@ -227,19 +224,34 @@
 
 
 
-//app.factory('pruebaFct', function() {
-//    var comun = {};
-//    comun.text = function()
-//    {
-//        return 'hola ccccccccccccccc';
-//    };
-//    return comun;
-//});
-    app.filter('unsafe', function($sce) {
-        return $sce.trustAsHtml;
-    });
 
     app.controller('pruebaCtrl', function($scope)
     {
-        
+        $scope.obtenerValores = function()
+        {
+            var inputs = angular.element("#contenedor").find('input');
+            var texts = angular.element("#contenedor").find('textarea');
+            contenidosJson = {nombre: "marco", apellido: "kkk"};
+            contenidosJson.edad = "33";
+            for (var i = 0; i < inputs.length; i++)
+            {
+                var propiedad = angular.element(inputs[i]).attr('id').toString();
+                contenidosJson[propiedad] = angular.element(inputs[i]).val();
+            }
+//             for (var i = 0; i < texts.length; i++)
+//                contenidosJson += '"' + angular.element(texts[i]).attr('id').toString() + '":"' + angular.element(texts[i]).val() + '",';
+
+
+            $scope.resultado = contenidosJson;
+        };
+
+        $scope.pruebaTexto = function()
+        {
+            texto = "Please follow the instructions on the Pandoc website to install it";
+            opcion = 'fol';
+            index = texto.toString().indexOf(opcion);
+            opcionNueva = "123456";
+            texto = texto.toString().replace(opcion, opcionNueva);
+//            console.log("\n texto: " + texto + "\n indice fol: " + index + "\n texto: " + texto + "\n indice fol: " + index + (int)opcionNueva.length) );
+        };
     });

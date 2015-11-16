@@ -11,7 +11,7 @@
             <select ng-show="documento._id == null" ng-model="documento.plantillaObjeto" ng-change="cargarPlantilla()" ng-options="{_id : item._id, nombre : item.nombre} as item.nombre for item in plantillasVigentes">
                 <option value="">Seleccione una plantilla</option>
             </select>
-            <span ng-show="documento._id" style="font-size: 14pt"> {{documento.plantilla}}</span>
+            <span ng-hide="documento._id == null" style="font-size: 14pt"> {{documento.plantilla_nombre}}</span>
         </div>
     </div>
 
@@ -21,11 +21,11 @@
 
             <div class="row">
 
-                    <div id="editorDocumento" class="txtHtmlPlantilla" ng-model="editorDocumento"  bind-html-compile="documento.plantillaContenido" style="width:21.6cm;  height:8cm; overflow:auto; border:1px solid gray; ">
+                    <div id="editorDocumento" class="txtHtmlPlantilla"  bind-html-compile="documento.plantilla_contenido" style="width:21.6cm;  height:8cm; overflow:auto; border:1px solid gray; ">
                     </div>
 
-                <button class="btn-default btn" ng-click="documento.contenido = ''" > Limpiar</button>
-                <button class="glyphicon glyphicon-eye-open  btn-info btn" ng-click="previsualizarDocumento(editorDocumento)"> Visualizar</button>
+                <button class="btn-default btn" ng-click="limpiar()" > Limpiar</button>
+                <button class="glyphicon glyphicon-eye-open  btn-info btn" ng-click="divPrevisualizacion = adecuarParaVisualizar(documento.plantilla_contenido)"> Visualizar</button>
                 <div id="txtHtmlDocumento" class="txtHtmlDocumento" marked="divPrevisualizacion" style="width:21.6cm;  height:8cm; overflow:auto; border:1px solid gray; ">
                 </div>
             </div>

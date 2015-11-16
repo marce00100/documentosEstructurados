@@ -13,7 +13,7 @@ class DocumentosController extends Controller
     public function obtenerDocumentos()
     {
         $camposMostrados = [
-            '_id', 'nombre', 'descripcion', 'plantilla',
+            '_id', 'nombre', 'descripcion', 'plantilla_nombre',
             'usuario_creacion', 'usuario_modificacion',
             'fecha_creacion', 'fecha_modificacion',
         ];
@@ -39,9 +39,10 @@ class DocumentosController extends Controller
         $documento = new Documentos();
         $documento->nombre = (string) $request->nombre;
         $documento->descripcion = (string) $request->descripcion;
-        $documento->plantilla = (string) $request->plantilla;
         $documento->plantilla_id = (string) $request->plantilla_id;
-        $documento->contenido = (string) $request->contenido;
+        $documento->plantilla_nombre = (string) $request->plantilla_nombre;
+        $documento->plantilla_contenido = (string) $request->plantilla_contenido;
+        $documento->contenido = $request->contenido;
         $documento->usuario_creacion = $request->usuario_creacion;
         $documento->usuario_modificacion = $request->usuario_creacion;
         $documento->save();
@@ -58,9 +59,9 @@ class DocumentosController extends Controller
         $documento = Documentos::find($id);
         $documento->nombre = (string) $request->nombre;
         $documento->descripcion = (string) $request->descripcion;
-        $documento->plantilla = (string) $request->plantilla;
-        $documento->plantilla_id = (string) $request->plantilla_id;
-        $documento->contenido = (string) $request->contenido;
+//        $documento->plantilla = (string) $request->plantilla;
+//        $documento->plantilla_id = (string) $request->plantilla_id;
+        $documento->contenido = $request->contenido;
         $documento->usuario_modificacion = $request->usuario_modificacion;
         $documento->save();
 
