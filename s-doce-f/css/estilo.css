@@ -1,3 +1,7 @@
+
+
+/* ===================================  Propios ======================*/
+
 body{
     /*background: #eeeef1;*/
     font: 14px  "Segoe UI", "Tahoma", "Calibri", arial, sans-serif ;
@@ -45,6 +49,18 @@ footer {
     color:#fff;
 }
 
+
+.txtHtmlPlantilla, .txtHtmlDocumento{
+    padding: 10px 20px;
+}
+
+.txtHtmlPlantilla textarea, .txtHtmlDocumento textarea{
+    width: 100%;
+    height: 100px;
+}
+
+/* -------------- de los botones  on / off   */
+
 .material-switch > input[type="checkbox"] {
     display: none;   
 }
@@ -90,11 +106,70 @@ footer {
     left: 20px;
 }
 
-.txtHtmlPlantilla, .txtHtmlDocumento{
-    padding: 10px 20px;
+
+
+/* ----------------- para los menus   ----------  */
+.menu{
+    padding: 0 10% 0 5%;
+        background-color: #273343;
 }
 
-.txtHtmlPlantilla textarea, .txtHtmlDocumento textarea{
-    width: 100%;
-    height: 100px;
+.navbar-default {
+  background-color: #273343;
+  border-color: #566e85;
+}
+.navbar-default .navbar-brand {
+  color: #b7bfc1;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #fbfeff;
+}
+.navbar-default .navbar-text {
+  color: #b7bfc1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #b7bfc1;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #fbfeff;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #fbfeff;
+  background-color: #566e85;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #fbfeff;
+  background-color: #566e85;
+}
+.navbar-default .navbar-toggle {
+  border-color: #566e85;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #566e85;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #b7bfc1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #b7bfc1;
+}
+.navbar-default .navbar-link {
+  color: #b7bfc1;
+}
+.navbar-default .navbar-link:hover {
+  color: #fbfeff;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #b7bfc1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #fbfeff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #fbfeff;
+    background-color: #566e85;
+  }
 }

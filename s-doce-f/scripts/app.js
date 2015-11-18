@@ -4,9 +4,13 @@
             {
                 markedProvider.setOptions({gfm: true});
             }])
-        .factory('appFactory', function($resource, $location)
+        .factory('appFactory', function($resource, $location, $rootScope)
         {
             var comun = {};
+
+            comun.colocarSubtitulo = function(sub) {
+                $rootScope.subtitulo = sub;
+            };
 
             //API-REST del Backend de Maestras
             comun.restMaestras = $resource("../s-doce-b/public/index.php/maestras/:id", {id: "@_id"}, {
@@ -22,13 +26,22 @@
             comun.restDocumentos = $resource("../s-doce-b/public/index.php/documentos/:id", {id: "@_id"}, {
                 update: {method: "PUT", params: {id: "@id"}}
             });
+            
+            comun.menu = function(indice)
+            {
+                alert(indice);
+                return indice;
+            }
 
 //            comun.irInicio = function() {
 //                $location.url("/maestras");
 //            };
+
+
+
             return comun;
         })
-        
+
         .directive("markitup", function() {
             return {
                 restrict: "A",
@@ -61,7 +74,8 @@
                     }
                 };
             }]);
-    ;
+
+
 
 
 
