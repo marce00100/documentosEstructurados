@@ -34,26 +34,92 @@
             insertText(texto, $rootScope.lastFocused);
         };
 
-        $rootScope.adecuarContenidoPlantilla = function(contenido)
+        $rootScope.adecuarContenidoPlantilla = function(plantillaContenido)
         {
-            text = contenido;
+            textoIds = textoIdsHtml = plantillaContenido;
             var opcion = '<textarea>';
             var id = 101;
-
-            while (text.toString().indexOf(opcion) != -1)
+            while (textoIds.indexOf(opcion) != -1)
             {
-                var opcionNueva = '<textarea id="' + id + '" markitup="markupSettings" class="markitup">';
-                text = text.toString().replace(opcion, opcionNueva);
+                textoIds = textoIds.replace(opcion, '<textarea id="' + id + '">');
+                textoIdsHtml = textoIdsHtml.replace(opcion, '<textarea id="' + id + '" markitup="markupSettings" class="markitup">');
                 id++;
             }
             opcion = "<input>";
-            while (text.toString().indexOf(opcion) != -1)
+            while (textoIds.indexOf(opcion) != -1)
             {
-                var opcionNueva = '<input id="' + id + '" type="text">';
-                text = text.toString().replace(opcion, opcionNueva);
+                textoIds = textoIds.replace(opcion, '<input id="' + id + '" type="text">');
+                textoIdsHtml = textoIdsHtml.replace(opcion, '<input id="' + id + '" type="text" value="">');
                 id++;
             }
-            return text;
+            var plantilla_contenido = {};
+            plantilla_contenido.contenidoIds = textoIds;
+            plantilla_contenido.contenidoIdsHtml = textoIdsHtml;
+            return plantilla_contenido;
+        };
+
+        $rootScope.adecuarContenidoDocumento = function(documentoContenido, plantillaContenido)
+        {
+            textoIdsHtml = plantillaContenido;
+            indice = 0;
+            while (indice != -1)
+            {
+                indice = textoIdsHtml.indexOf('<textarea id="', indice);
+                if (indice > -1)
+                {
+                    id = textoIdsHtml.substr(indice + ('<textarea id="').length, 3); //encuentra el ids del textarea 
+                    textoIdsHtml = textoIdsHtml.replace('<textarea id="' + id + '">', '<textarea id="' + id + '" markitup="markupSettings" class="markitup">' + documentoContenido[id]);
+                    indice++;
+                }
+            }
+            indice = 0;
+            while (indice != -1)
+            {
+                indice = textoIdsHtml.indexOf('<input id="', indice);
+                if (indice > -1)
+                {
+                    id = textoIdsHtml.substr(indice + ('<input id="').length, 3); //encuentra los ids de los inputs 
+                    textoIdsHtml = textoIdsHtml.replace('<input id="' + id + '" type="text">', '<input id="' + id + '" type="text" value="' + documentoContenido[id] + '">');
+
+                    indice++;
+                }
+            }
+
+            return textoIdsHtml;
+        };
+
+        $rootScope.adecuarParaVisualizar = function(plantillaContenidoIds)
+        {
+            texto = plantillaContenidoIds;
+            var inputs = angular.element("#editorDocumento").find('input');
+            var texts = angular.element("#editorDocumento").find('textarea');
+
+            for (var i = 0; i < texts.length; i++)
+            {
+                var id = angular.element(texts[i]).attr('id');
+                texto = texto.replace('<textarea id="' + id + '">', angular.element(texts[i]).val());
+            }
+            for (var i = 0; i < inputs.length; i++)
+            {
+                var id = angular.element(inputs[i]).attr('id');
+                texto = texto.replace('<input id="' + id + '" type="text">', angular.element(inputs[i]).val());
+            }
+            return texto;
+        };
+
+
+        $rootScope.adecuarDocumentoParaGuardar = function()
+        {
+            var inputs = angular.element("#editorDocumento").find('input');
+            var texts = angular.element("#editorDocumento").find('textarea');
+            contenidosJson = {};
+            for (var i = 0; i < texts.length; i++)
+                contenidosJson[angular.element(texts[i]).attr('id').toString()] = angular.element(texts[i]).val();
+
+            for (var i = 0; i < inputs.length; i ++)
+                contenidosJson[angular.element(inputs[i]).attr('id').toString()] = angular.element(inputs[i]).val();
+
+            return contenidosJson;
         };
 
         $rootScope.limpiar = function()
@@ -66,62 +132,6 @@
                 angular.element(inputs[i]).val("");
         };
 
-        $rootScope.adecuarParaVisualizar = function(contenido)
-        {
-            text = contenido;
-            var inputs = angular.element("#editorDocumento").find('input');
-            var texts = angular.element("#editorDocumento").find('textarea');
-
-            for (var i = 0; i < texts.length; i++)
-            {
-                var id = angular.element(texts[i]).attr('id');
-                var opcionId = '<textarea id="' + id + '" markitup="markupSettings" class="markitup">';
-                var opcionNueva = angular.element(texts[i]).val();
-                text = text.toString().replace(opcionId, opcionNueva);
-            }
-            for (var i = 0; i < inputs.length; i++)
-            {
-                var id = angular.element(inputs[i]).attr('id');
-                var opcionId = '<input id="' + id + '" type="text">';
-                var opcionNueva = angular.element(inputs[i]).val();
-                text = text.toString().replace(opcionId, opcionNueva);
-            }
-            return text;
-        };
-
-        $rootScope.adecuarDocumentoParaGuardar = function()
-        {
-            var inputs = angular.element("#editorDocumento").find('input');
-            var texts = angular.element("#editorDocumento").find('textarea');
-            contenidosJson = {};
-            for (var i = 0; i < inputs.length; i ++)
-                contenidosJson[angular.element(inputs[i]).attr('id').toString()] = angular.element(inputs[i]).val();
-            for (var i = 0; i < texts.length; i++)
-                contenidosJson[angular.element(texts[i]).attr('id').toString()] = angular.element(texts[i]).val();
-
-            return contenidosJson;
-        };
-
-        $rootScope.adecuarContenidoDocumento = function(documentoContenido, plantillaContenido)
-        {
-            text = documentoContenido;
-            var inputs = angular.element(plantillaContenido).find('input');
-            var texts = angular.element(plantillaContenido).find('textarea');
-
-            for (var i = 0; i < texts.length; i++)
-            {
-                var id = angular.element(texts[i]).attr('id');
-                valor = documentoContenido[id];
-                angular.element(texts[i]).val(valor);
-            }
-            for (var i = 0; i < inputs.length; i++)
-            {
-                var id = angular.element(inputs[i]).attr('id');
-                valor = documentoContenido[id];
-                angular.element(inputs[i]).val(valor);
-            }
-            return plantillaContenido;
-        };
 
 
     });

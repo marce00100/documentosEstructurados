@@ -1,5 +1,5 @@
 
-    var app = angular.module('appMaestras', ['ngRoute', 'ngResource', 'hc.marked', 'naif.base64'])
+    var app = angular.module('app', ['ngRoute', 'ngResource', 'hc.marked', 'naif.base64'])
         .config(['markedProvider', function(markedProvider)
             {
                 markedProvider.setOptions({gfm: true});

@@ -18,7 +18,7 @@
         var scrollPos = input.scrollTop;
         var pos = 0;
         var browser = ((input.selectionStart || input.selectionStart == "0") ?
-            "ff" : (document.selection ? "ie" : false));
+        "ff" : (document.selection ? "ie" : false));
         if (browser == "ie") {
             input.focus();
             var range = document.selection.createRange();
@@ -53,7 +53,9 @@
 
 
 
-
+    function insertarEn(str, index, value) {
+        return str.substr(0, index) + value + str.substr(index);
+    }
 
 //    function replaceAll(text, search, newstring) {
 //        while (text.toString().indexOf(search) != - 1)
