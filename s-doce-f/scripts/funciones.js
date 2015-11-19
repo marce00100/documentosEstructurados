@@ -57,6 +57,8 @@
         return str.substr(0, index) + value + str.substr(index);
     }
 
+
+
 //    function replaceAll(text, search, newstring) {
 //        while (text.toString().indexOf(search) != - 1)
 //            text = text.toString().replace(search, newstring);

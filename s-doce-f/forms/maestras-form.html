@@ -22,9 +22,10 @@
 
         <div id="contenedorCabecera" class="container">
             <h3 class="bg-success" style="padding: 5px 10px">Cabecera:</h3>
-            <div class="row" style="width: 22cm">
-                <h4 class="col-xs-8" style="padding: 0 20px; margin: 0px "><small>Editor markDown</small></h4>
-                <div class="col-xs-4"><input type="file"  ng-model="file"  base-sixty-four-input   ng-change="insertarImagen(file)" ></div>
+            <div class="row" style="width: 22cm"> 
+                <h4 class="col-xs-8" style="padding: 0 20px; margin: 0px "><small>Editor markDown</small>
+                    <button id="btnCargaImagen" class="btn-xs  glyphicon glyphicon-picture" onclick="abrirImagen()" ></button></h4>
+                <div class="col-xs-4"><input id="fileImg" type="file"  ng-model="file"  base-sixty-four-input   ng-change="insertarImagen(file)" ></div>
             </div>
             <!--<div ng-include="'forms/barraHerramientas.html'"></div>-->
             <textarea id="txtMdCabecera"  ng-model="maestra.cabecera" markitup="markupSettings" class="markitup" ></textarea>
@@ -53,7 +54,7 @@
         <h4><small>Descripción:</small></h4>
         <p><textarea ng-model="maestra.descripcion" placeholder="descripción" style="width:60%; height:50px;"></textarea></p>
 
-        <button ng-click="guardar()" class="btn btn-success glyphicon glyphicon-ok">Guardar</button> 
+        <button ng-click="guardar()" class="btn btn-success glyphicon glyphicon-ok"> Guardar</button> 
         <a href="#/" class="btn btn-primary glyphicon glyphicon-home"> volver al inicio</a>
     </div>
 

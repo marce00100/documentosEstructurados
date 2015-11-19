@@ -236,8 +236,7 @@
                             $('> ul', this).show();
                             $(document).one('click', function() { // close dropmenu if click outside
                                 $('ul ul', header).hide();
-                            }
-                            );
+                            });
                         }).bind('mouseleave.markItUp', function() {
                             $('> ul', this).hide();
                         }).appendTo(ul);
@@ -247,14 +246,15 @@
                         }
                     }
                 });
-//                var liImg = $('<li class="markItUpButton markItUpButton14 ">' +
-//                //'<a title="Imagen "  href="">Imagen' + 
-//                ''+
-//                //'</a>' +
-//                '</li>');
-//
-//                
-//                liImg.appendTo(ul);
+                var btnImg = $('<button id="btnCargaImagen" class="btn-xs  glyphicon glyphicon-picture" onclick="abrirImagen()" >');
+                btnImg.appendTo(ul);
+                var liImg = $('<li class="markItUpButton markItUpButton14 " onclick="abrirImagen()">' +
+                '<a title="Imagen"   >' + 
+                '</a>' +
+                '</li>');
+
+                
+                liImg.appendTo(ul);
                 levels.pop();
                 return ul;
             }

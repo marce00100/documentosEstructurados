@@ -132,6 +132,15 @@
                 angular.element(inputs[i]).val("");
         };
 
+//        $rootScope.abrirImagen = function()
+//        {
+//            $("#fileImg").trigger('click');
+//        };
+
+
+//        $("#btnCargaImagen").click(function() {
+//            $("#fileImg").trigger('click');
+//        });
 
 
     });

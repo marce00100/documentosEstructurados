@@ -245,6 +245,7 @@
 
         $scope.pruebaTexto = function()
         {
+            $.fn.dingo();
             var char = "What is the best way to locate wherever the ";
             index = char.search("best");
             index2 = char.indexOf("best");
