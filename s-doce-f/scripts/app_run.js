@@ -145,9 +145,9 @@
                 case 3:
                     html = $rootScope.adecuarParaVisualizar(elemento.plantilla_contenido);
                     html = marked(html);
-                    cabecera = marked(elemento.maestra.cabecera);
-                    pie = marked(elemento.maestra.pie);
-                    html = "<header>" + cabecera + "</header>" + html + "<footer>" + pie + "</footer>";
+//                    cabecera = marked(elemento.maestra.cabecera);
+//                    pie = marked(elemento.maestra.pie);
+//                    html = "<header>" + cabecera + "</header>" + html + "<footer>" + pie + "</footer>";
                     break;
                     
             }
