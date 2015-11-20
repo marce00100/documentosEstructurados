@@ -45,6 +45,16 @@ class MaestrasController extends Controller
         }
     }
 
+    public function obtenerMaestraActiva()
+    {
+
+        $maestra = Maestras::where("activa", "=", 1)->first();
+        return response()->json([
+                "mensaje" => "Plantilla Maestra activa",
+                "plantilla_maestra" => $maestra->toArray(),
+                ], 200);
+    }
+
     public function crear(Request $request)
     {
         if ($request->activa)
@@ -101,16 +111,6 @@ class MaestrasController extends Controller
             $maestra->activa = 0;
             $maestra->save();
         }
-    }
-    
-    public function obtenerMaestraActiva()
-    {
-
-        $maestra = Maestras::where("activa", "=", 1)->get(); 
-        return response()->json([
-                    "mensaje" => "Plantilla Maestra activa",
-                    "plantilla_maestra" => $maestra->toArray(),
-                    ], 200);
     }
 
 }

@@ -205,7 +205,7 @@
                 
                 $resource("../s-doce-b/public/index.php/maestra/activa").get(function(respuesta) {
                     $scope.documento.maestra = respuesta.plantilla_maestra;
-                });
+                }); 
             });
 
 

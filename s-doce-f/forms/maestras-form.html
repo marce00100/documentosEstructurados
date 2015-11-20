@@ -27,7 +27,7 @@
 
             <!--<div ng-include="'forms/barraHerramientas.html'"></div>-->
             <textarea id="txtMdCabecera"  ng-model="maestra.cabecera" markitup="markupSettings" class="markitup" ></textarea>
-            <button ng-click="maestra.cabecera = ''" >Limpiar cabecera</button>
+            <button ng-click="maestra.cabecera = ''" class="btn btn-info glyphicon glyphicon-unchecked"> Limpiar cabecera</button>
             <h4><small>Previsualización</small></h4>
             <div id="txtHtmlResultado" marked="maestra.cabecera" style="width:21.6cm;  height:2.5cm; overflow:auto; border:1px solid gray; ">
             </div>
@@ -38,7 +38,7 @@
                 <h3 class="bg-success" style="padding: 5px 10px">Pie de página:</h3>
                 <h4  style="padding: 0 20px; margin: 0px "><small>Editor markDown</small></h4>
                 <textarea id="txtMdPie" ng-model="maestra.pie" markitup="markupSettings" class="markitup" ></textarea>
-                <button ng-click="maestra.pie = ''" >Limpiar pié de página</button>
+                <button ng-click="maestra.pie = ''" class="glyphicon glyphicon-unchecked  btn-info btn"> Limpiar pié de página</button>
 
                 <h4><small>Previsualización</small></h4>
                 <div id="txtHtmlResultado" marked="maestra.pie" style="height:100px; overflow:scroll; border:1px solid gray; padding:0.5em; ">

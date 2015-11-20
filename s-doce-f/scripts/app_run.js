@@ -132,27 +132,28 @@
                 angular.element(inputs[i]).val("");
         };
 
-        $rootScope.generarPDF = function(formulario, elemento)
+        $rootScope.generarPDF = function(modulo, elemento)
         {
             var html = "";
 
-            switch(formulario)
+            switch(modulo)
             {
                 case 1:
                     
+                    
                 case 2:
+                    
                     
                 case 3:
                     html = $rootScope.adecuarParaVisualizar(elemento.plantilla_contenido);
                     html = marked(html);
-//                    cabecera = marked(elemento.maestra.cabecera);
-//                    pie = marked(elemento.maestra.pie);
-//                    html = "<header>" + cabecera + "</header>" + html + "<footer>" + pie + "</footer>";
-                    break;
-                    
+                    cabecera = marked(elemento.maestra.cabecera);
+                    pie = marked(elemento.maestra.pie);
+                    html = "<header>" + cabecera + "</header>" + html + "<footer>" + pie + "</footer>";
+                    break;                    
             }
             
             pdfDesdeHtml(html,elemento.nombre);
-        };
+        };       
 
     });
