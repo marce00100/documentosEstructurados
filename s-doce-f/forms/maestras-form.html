@@ -22,15 +22,12 @@
 
         <div id="contenedorCabecera" class="container">
             <h3 class="bg-success" style="padding: 5px 10px">Cabecera:</h3>
-            <div class="row" style="width: 22cm"> 
-                <h4 class="col-xs-8" style="padding: 0 20px; margin: 0px "><small>Editor markDown</small>
-                    <button id="btnCargaImagen" class="btn-xs  glyphicon glyphicon-picture" onclick="abrirImagen()" ></button></h4>
-                <div class="col-xs-4"><input id="fileImg" type="file"  ng-model="file"  base-sixty-four-input   ng-change="insertarImagen(file)" ></div>
-            </div>
+
+            <h4 style="padding: 0 20px; margin: 0px "><small>Editor markDown</small></h4>
+
             <!--<div ng-include="'forms/barraHerramientas.html'"></div>-->
             <textarea id="txtMdCabecera"  ng-model="maestra.cabecera" markitup="markupSettings" class="markitup" ></textarea>
             <button ng-click="maestra.cabecera = ''" >Limpiar cabecera</button>
-
             <h4><small>Previsualización</small></h4>
             <div id="txtHtmlResultado" marked="maestra.cabecera" style="width:21.6cm;  height:2.5cm; overflow:auto; border:1px solid gray; ">
             </div>
@@ -39,10 +36,7 @@
             <!-- ***************************    PIE   ***************************************************************************************** -->
             <div id="contenedorPie">
                 <h3 class="bg-success" style="padding: 5px 10px">Pie de página:</h3>
-                <div class="row" style="width: 22cm">
-                    <h4 class="col-xs-8" style="padding: 0 20px; margin: 0px "><small>Editor markDown</small></h4>
-                    <div class="col-xs-4"><input type="file"  ng-model="file"  base-sixty-four-input   ng-change="insertarImagen(file)" ></div>                    
-                </div>
+                <h4  style="padding: 0 20px; margin: 0px "><small>Editor markDown</small></h4>
                 <textarea id="txtMdPie" ng-model="maestra.pie" markitup="markupSettings" class="markitup" ></textarea>
                 <button ng-click="maestra.pie = ''" >Limpiar pié de página</button>
 

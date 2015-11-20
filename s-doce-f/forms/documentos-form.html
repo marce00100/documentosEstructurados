@@ -17,8 +17,12 @@
 
     <div>
         <div id="contenidoDocumento" class="container">
-            <h3 class="bg-success" style="padding: 5px 10px">Documento:</h3>
-
+            <div class="row">
+                <div class="col-xs-10">
+                    <h3 class="bg-success" style="padding: 5px 10px">Documentos:</h3>
+                </div>
+                <div class="col-xs-2"><button ng-click="generarPDF(3, documento)" class="btn btn-danger glyphicon glyphicon-barcode" > pdf</button></div>
+            </div>
             <div class="row">
 
                 <div id="editorDocumento" class="txtHtmlPlantilla"  bind-html-compile="documento.plantilla_contenidoHtml" style="width:21.6cm;  height:8cm; overflow:auto; border:1px solid gray; ">

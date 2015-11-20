@@ -1,4 +1,4 @@
-    app.run(function($rootScope) {
+    app.run(function($rootScope, marked) {
         $rootScope.markupSettings = settingsMarkdown;
 
         $rootScope.insertarImagen = function(img)
@@ -132,15 +132,27 @@
                 angular.element(inputs[i]).val("");
         };
 
-//        $rootScope.abrirImagen = function()
-//        {
-//            $("#fileImg").trigger('click');
-//        };
+        $rootScope.generarPDF = function(formulario, elemento)
+        {
+            var html = "";
 
-
-//        $("#btnCargaImagen").click(function() {
-//            $("#fileImg").trigger('click');
-//        });
-
+            switch(formulario)
+            {
+                case 1:
+                    
+                case 2:
+                    
+                case 3:
+                    html = $rootScope.adecuarParaVisualizar(elemento.plantilla_contenido);
+                    html = marked(html);
+                    cabecera = marked(elemento.maestra.cabecera);
+                    pie = marked(elemento.maestra.pie);
+                    html = "<header>" + cabecera + "</header>" + html + "<footer>" + pie + "</footer>";
+                    break;
+                    
+            }
+            
+            pdfDesdeHtml(html,elemento.nombre);
+        };
 
     });

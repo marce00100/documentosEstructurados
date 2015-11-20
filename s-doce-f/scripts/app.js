@@ -74,9 +74,7 @@
         }]);
 
 
-    function abrirImagen() {
-        angular.element("#fileImg").trigger('click');
-    }
+
 
 
 
