@@ -1,16 +1,15 @@
 <div>
     <div style="margin: 10px 0" class="row">
-        <div class="col-md-1 col-xs-1" style="padding:0">
-            <span class="glyphicon glyphicon-menu-hamburger  btn-default btn-lg" style="padding:0 10px; font-size:35px"></span>
+        <div class="col-md-1 col-xs-1" style="padding:0" ng-include="'forms/menu2.html'">
         </div>
         <div class="col-md-8 col-xs-7">
-            <input ng-model="plantilla.nombre" placeholder="Plantilla sin nombre" style="width: 100%; font-size: 18pt; font-style: italic; ">
+            <input ng-model="contexto.nombre" placeholder="Plantilla sin nombre" style="width: 100%; font-size: 18pt; font-style: italic; ">
 
         </div>
         <div class="list-group-item col-md-3 col-xs-4">
             Plantilla vigente  
             <div class="material-switch pull-right">
-                <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox" ng-model="plantilla.vigente" ng-true-value="1" ng-false-value="0"/>
+                <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox" ng-model="contexto.vigente" ng-true-value="1" ng-false-value="0"/>
                 <label for="someSwitchOptionSuccess" class="label-success"></label>
             </div>
         </div>
@@ -47,21 +46,21 @@
                     </td>
                     <td>
                         <!-- -----------------------------------EDITOR --------------------------------------------->
-                        <textarea id="txtMdContenido"  ng-model="plantilla.contenido" markitup="markupSettings" class="markitup" style="  height:8cm;"></textarea>
-                        <button ng-click="plantilla.contenido = ''" class="glyphicon glyphicon-unchecked  btn-info btn">Limpiar</button> 
+                        <textarea id="txtMdContenido"  ng-model="contexto.contenido" markitup="markupSettings" class="markitup " style="  height:8cm;"></textarea>
+                        <button ng-click="contexto.contenido = ''" class="glyphicon glyphicon-unchecked  btn-info btn"> <span>Limpiar</span></button> 
                         <h4><small>Previsualización</small></h4>
-                        <div id="txtHtmlPlantilla" class="txtHtmlPlantilla" marked="plantilla.contenido" style="width:21.6cm;  height:8cm; overflow:auto; border:1px solid gray; ">
+                        <div id="txtHtmlPlantilla" class="txtPrevisualizacion" marked="contexto.contenido" style="width:21.6cm;  height:8cm; overflow:auto; border:1px solid gray; ">
                         </div>
                     </td>
                 </tr>
             </table>
             <div class="row">
                 <h4><small>Descripción:</small></h4>
-                <p><textarea ng-model="plantilla.descripcion" placeholder="descripción" style="width:60%; height:50px;"></textarea></p>
+                <p><textarea ng-model="contexto.descripcion" placeholder="descripción" style="width:60%; height:50px;"></textarea></p>
             </div>
         </div>
-        <button ng-click="guardar()" class="btn btn-success glyphicon glyphicon-ok">Guardar</button> 
-        <a href="#/plantillas" class="btn btn-primary glyphicon glyphicon-home"> volver al inicio</a>
+        <button ng-click="guardar()" class="btn btn-success glyphicon glyphicon-ok"> <span>Guardar</span></button> 
+        <a href="#/plantillas" class="btn btn-primary glyphicon glyphicon-home"> <span>Volver al inicio</span></a>
     </div>
 
 </div>

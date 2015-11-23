@@ -3,12 +3,19 @@
 /* ===================================  Propios ======================*/
 
 body{
-    /*background: #eeeef1;*/
+    background: #eeeef1;
     font: 14px  "Segoe UI", "Tahoma", "Calibri", arial, sans-serif ;
-    /*    color: black;
+        color: black;
         width: 100%;
-        min-height: 100%;*/
+        min-height: 100%;
 }
+
+/*.glyphicon{
+    font-family: "Segoe UI", "Tahoma", "Calibri", arial, sans-serif ;}  */
+
+button, a, span, li{
+    font-size: 14px;
+    font-family: "Segoe UI", "Tahoma", "Calibri", arial, sans-serif ;}  
 header {
     background:#2c3e50;
     color:#fff;
@@ -54,11 +61,12 @@ footer {
 }
 
 
-.txtHtmlPlantilla, .txtHtmlDocumento{
+.txtEditor, .txtPrevisualizacion{
     padding: 10px 20px;
+    background: #fff;
 }
 
-.txtHtmlPlantilla textarea, .txtHtmlDocumento textarea{
+.txtEditor textarea, .txtPrevisualizacion textarea{
     width: 100%;
     height: 100px;
 }

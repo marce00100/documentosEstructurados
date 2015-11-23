@@ -84,7 +84,6 @@
                     indice++;
                 }
             }
-
             return textoIdsHtml;
         };
 
@@ -132,28 +131,29 @@
                 angular.element(inputs[i]).val("");
         };
 
-        $rootScope.generarPDF = function(modulo, elemento)
+        $rootScope.generarPDF = function(modulo, contexto)
         {
             var html = "";
 
-            switch(modulo)
+            switch (modulo)
             {
                 case 1:
-                    
-                    
-                case 2:
-                    
-                    
-                case 3:
-                    html = $rootScope.adecuarParaVisualizar(elemento.plantilla_contenido);
-                    html = marked(html);
-                    cabecera = marked(elemento.maestra.cabecera);
-                    pie = marked(elemento.maestra.pie);
+                    cabecera = marked(contexto.cabecera);
+                    pie = marked(contexto.pie);
                     html = "<header>" + cabecera + "</header>" + html + "<footer>" + pie + "</footer>";
-                    break;                    
+                    break;
+                case 2:
+                    html = marked(contexto.contenido);
+                    break;
+                case 3:
+                    html = $rootScope.adecuarParaVisualizar(contexto.plantilla_contenido);
+                    html = marked(html);
+                    cabecera = marked(contexto.maestra.cabecera);
+                    pie = marked(contexto.maestra.pie);
+                    html = "<header>" + cabecera + "</header>" + html + "<footer>" + pie + "</footer>";
+                    break;
             }
-            
-            pdfDesdeHtml(html,elemento.nombre);
-        };       
 
+            pdfDesdeHtml(html, contexto.nombre);
+        };
     });

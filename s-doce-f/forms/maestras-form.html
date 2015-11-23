@@ -1,22 +1,19 @@
 <div>
     <div style="margin: 10px 0" class="row">
-        <div class="col-md-1 col-xs-1" style="padding:0">
-            <span class="glyphicon glyphicon-menu-hamburger  btn-default btn-lg" style="padding:0 10px; font-size:35px"></span>
+        <div class="col-md-1 col-xs-1" style="padding:0" ng-include="'forms/menu2.html'">
         </div>
         <div class="col-md-8 col-xs-7">
-            <input ng-model="maestra.nombre" placeholder="Plantilla maestra sin nombre" style="width: 100%; font-size: 18pt; font-style: italic; ">
+            <input ng-model="contexto.nombre" placeholder="Plantilla maestra sin nombre" style="width: 100%; font-size: 18pt; font-style: italic; ">
 
         </div>
         <div  class="list-group-item col-md-3 col-xs-4">
             Plantilla maestra activa
             <div class="material-switch pull-right">
-                <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox" ng-model="maestra.activa" ng-true-value="1" ng-false-value="0"/>
+                <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox" ng-model="contexto.activa" ng-true-value="1" ng-false-value="0"/>
                 <label for="someSwitchOptionSuccess" class="label-success"></label>
             </div>
         </div>
     </div>
-
-
     <div>
         <!-- ***************************    CABECERA   ***************************************************************************************** -->
 
@@ -26,10 +23,10 @@
             <h4 style="padding: 0 20px; margin: 0px "><small>Editor markDown</small></h4>
 
             <!--<div ng-include="'forms/barraHerramientas.html'"></div>-->
-            <textarea id="txtMdCabecera"  ng-model="maestra.cabecera" markitup="markupSettings" class="markitup" ></textarea>
-            <button ng-click="maestra.cabecera = ''" class="btn btn-info glyphicon glyphicon-unchecked"> Limpiar cabecera</button>
+            <textarea id="txtMdCabecera"  ng-model="contexto.cabecera" markitup="markupSettings" class="markitup txtEditor" ></textarea>
+            <button ng-click="contexto.cabecera = ''" class="btn btn-info glyphicon glyphicon-unchecked"> <span>Limpiar cabecera</span></button>
             <h4><small>Previsualización</small></h4>
-            <div id="txtHtmlResultado" marked="maestra.cabecera" style="width:21.6cm;  height:2.5cm; overflow:auto; border:1px solid gray; ">
+            <div id="txtHtmlResultado" class="txtPrevisualizacion" marked="contexto.cabecera" style="width:21.6cm;  height:2.5cm; overflow:auto; border:1px solid gray; ">
             </div>
 
 
@@ -37,19 +34,19 @@
             <div id="contenedorPie">
                 <h3 class="bg-success" style="padding: 5px 10px">Pie de página:</h3>
                 <h4  style="padding: 0 20px; margin: 0px "><small>Editor markDown</small></h4>
-                <textarea id="txtMdPie" ng-model="maestra.pie" markitup="markupSettings" class="markitup" ></textarea>
-                <button ng-click="maestra.pie = ''" class="glyphicon glyphicon-unchecked  btn-info btn"> Limpiar pié de página</button>
+                <textarea id="txtMdPie"  ng-model="contexto.pie" markitup="markupSettings" class="markitup txtEditor" ></textarea>
+                <button ng-click="contexto.pie = ''" class="glyphicon glyphicon-unchecked  btn-info btn"> <span>Limpiar pié de página</span></button>
 
                 <h4><small>Previsualización</small></h4>
-                <div id="txtHtmlResultado" marked="maestra.pie" style="height:100px; overflow:scroll; border:1px solid gray; padding:0.5em; ">
+                <div id="txtHtmlResultado" class="txtPrevisualizacion" marked="contexto.pie" style="width:21.6cm;  height:2.5cm; overflow:auto; border:1px solid gray; ">
                 </div>
             </div>
         </div>
         <h4><small>Descripción:</small></h4>
-        <p><textarea ng-model="maestra.descripcion" placeholder="descripción" style="width:60%; height:50px;"></textarea></p>
+        <p><textarea ng-model="contexto.descripcion" placeholder="descripción" style="width:60%; height:50px;"></textarea></p>
 
-        <button ng-click="guardar()" class="btn btn-success glyphicon glyphicon-ok"> Guardar</button> 
-        <a href="#/" class="btn btn-primary glyphicon glyphicon-home"> volver al inicio</a>
+        <button ng-click="guardar()" class="btn btn-success glyphicon glyphicon-ok"> <span>Guardar</span></button> 
+        <a href="#/maestras" class="btn btn-primary glyphicon glyphicon-home"> <span>Volver al inicio</span></a>
     </div>
 
 </div>
